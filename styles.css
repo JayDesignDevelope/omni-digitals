@@ -32,10 +32,22 @@
   /* glass tokens — Apple liquid glass */
   --glass-fill:linear-gradient(150deg,rgba(255,255,255,.14),rgba(255,255,255,.06));
   --glass-fill-strong:linear-gradient(150deg,rgba(255,255,255,.22),rgba(255,255,255,.10));
-  --glass-border:rgba(255,255,255,.28);
+  /* a warm-white hairline reads as a near-invisible seam against the
+     light lavender page — tint it toward violet-gray so every card edge
+     stays crisp and legible instead of dissolving into the backdrop */
+  --glass-border:rgba(146,124,201,.32);
   --glass-shadow:
-    0 4px 24px -8px rgba(60,25,140,.08),
-    inset 0 0 0 .5px rgba(255,255,255,.18);
+    0 8px 30px -12px rgba(60,25,140,.14),
+    inset 0 0 0 1px rgba(146,124,201,.14),
+    inset 0 1px 0 rgba(255,255,255,.5);
+
+  /* pastel icon-chip rotation — reused across value/channels/steps/ad-tiles
+     for Apple-Health-style variety instead of one monotone violet chip */
+  --tint-a-bg:#efe9ff; --tint-a-fg:#7c5cff;   /* violet */
+  --tint-b-bg:#ffe9f3; --tint-b-fg:#c026d3;   /* magenta */
+  --tint-c-bg:#e3f4ff; --tint-c-fg:#0284c7;   /* cyan/teal */
+  --tint-d-bg:#fff2df; --tint-d-fg:#b45309;   /* amber */
+  --tint-e-bg:#e7f7ee; --tint-e-fg:#0f9d58;   /* green */
 
   /* legacy aliases (kept so older rules resolve to violet) */
   --gold:var(--blue);
@@ -46,8 +58,8 @@
   --radius:24px;
   --radius-sm:18px;
   --maxw:1160px;
-  --shadow:0 12px 36px -16px rgba(60,25,140,.16);
-  --shadow-sm:0 6px 18px -10px rgba(60,25,140,.12);
+  --shadow:0 20px 46px -22px rgba(60,25,140,.13);
+  --shadow-sm:0 8px 20px -12px rgba(60,25,140,.10);
   /* Uber / Pinterest-style geometric sans */
   --font:'Inter',system-ui,-apple-system,sans-serif;
   --display:'Plus Jakarta Sans',var(--font);
@@ -78,11 +90,11 @@ body::before{
   content:"";
   position:fixed;inset:0;z-index:-2;
   background:
-    radial-gradient(38% 42% at 6% 4%, rgba(124,92,255,.42) 0%, transparent 58%),
-    radial-gradient(34% 40% at 96% 2%, rgba(199,125,255,.34) 0%, transparent 60%),
-    radial-gradient(42% 46% at 94% 98%, rgba(56,189,248,.28) 0%, transparent 60%),
-    radial-gradient(46% 52% at 4% 100%, rgba(167,139,250,.32) 0%, transparent 62%),
-    linear-gradient(160deg,#faf8ff 0%,#f3eeff 52%,#ede6fc 100%);
+    radial-gradient(38% 42% at 6% 4%, rgba(124,92,255,.20) 0%, transparent 58%),
+    radial-gradient(34% 40% at 96% 2%, rgba(199,125,255,.16) 0%, transparent 60%),
+    radial-gradient(42% 46% at 94% 98%, rgba(56,189,248,.13) 0%, transparent 60%),
+    radial-gradient(46% 52% at 4% 100%, rgba(167,139,250,.15) 0%, transparent 62%),
+    linear-gradient(160deg,#fdfcff 0%,#f8f6ff 52%,#f5f1fc 100%);
   background-attachment:fixed;
 }
 /* drifting orbs add life + give refraction something moving to bend */
@@ -90,10 +102,10 @@ body::after{
   content:"";
   position:fixed;inset:-15%;z-index:-1;pointer-events:none;
   background:
-    radial-gradient(closest-side, rgba(124,92,255,.28), transparent 70%) 6% 18%/360px 360px no-repeat,
-    radial-gradient(closest-side, rgba(199,125,255,.24), transparent 70%) 88% 26%/420px 420px no-repeat,
-    radial-gradient(closest-side, rgba(56,189,248,.20), transparent 70%) 74% 88%/400px 400px no-repeat,
-    radial-gradient(closest-side, rgba(167,139,250,.24), transparent 70%) 16% 82%/380px 380px no-repeat;
+    radial-gradient(closest-side, rgba(124,92,255,.14), transparent 70%) 6% 18%/360px 360px no-repeat,
+    radial-gradient(closest-side, rgba(199,125,255,.12), transparent 70%) 88% 26%/420px 420px no-repeat,
+    radial-gradient(closest-side, rgba(56,189,248,.10), transparent 70%) 74% 88%/400px 400px no-repeat,
+    radial-gradient(closest-side, rgba(167,139,250,.12), transparent 70%) 16% 82%/380px 380px no-repeat;
   filter:blur(6px);
   animation:meshDrift 26s ease-in-out infinite alternate;
 }
@@ -155,11 +167,37 @@ img,svg{display:block;max-width:100%}
 .btn:hover .arw{transform:translateX(4px)}
 
 /* ---------- inline icon sizing ---------- */
-.v-ico svg,.chan__ic svg{width:26px;height:26px}
-.ad-ic svg{width:24px;height:24px}
+.v-ico svg,.chan__ic svg{width:28px;height:28px}
+.ad-ic svg{width:26px;height:26px}
 .pcard__ic svg{width:23px;height:23px}
 .viz-chip__ic svg{width:21px;height:21px}
 .contact__points li span svg{width:20px;height:20px}
+.offer__ic svg{width:26px;height:26px}
+
+/* ---------- richer, colorful icon badges (reference_ui: chunky, glowing,
+   Apple-Health-style icon chips) — one shared treatment so every card's
+   icon reads as a bold little illustration, not a thin line glyph ---------- */
+.v-ico,.chan__ic,.ad-ic,.offer__ic,.step__ic,.ppin__ic{
+  position:relative;
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb,var(--oc,var(--blue)) 22%,transparent),
+    0 10px 22px -12px color-mix(in srgb,var(--oc,var(--blue)) 55%,transparent);
+  stroke-width:2.1;
+}
+.v-ico svg,.chan__ic svg,.ad-ic svg,.offer__ic svg,.step__ic svg,.ppin__ic svg{stroke-width:2.15}
+
+/* icon-badge pop-in reveal (JS adds .is-in via IntersectionObserver).
+   Guarded behind no-preference so reduced-motion users — and anyone
+   whose JS fails to run — always see the icons, just without the pop. */
+@media (prefers-reduced-motion:no-preference){
+  .v-ico,.chan__ic,.ad-ic,.offer__ic,.step__ic{
+    transform:scale(.4) rotate(-8deg);opacity:0;
+    transition:transform .55s cubic-bezier(.34,1.56,.64,1),opacity .4s ease;
+  }
+  .v-ico.is-in,.chan__ic.is-in,.ad-ic.is-in,.offer__ic.is-in,.step__ic.is-in{
+    transform:scale(1) rotate(0);opacity:1;
+  }
+}
 
 /* ---------- liquid glass surface ----------
    True Apple liquid glass: heavy blur, near-transparent fill,
@@ -169,7 +207,7 @@ img,svg{display:block;max-width:100%}
 .glass{
   position:relative;
   background:var(--glass-fill);
-  border:.75px solid var(--glass-border);
+  border:1px solid var(--glass-border);
   border-radius:var(--radius);
   box-shadow:var(--glass-shadow);
   backdrop-filter:blur(36px) saturate(1.5);
@@ -193,6 +231,46 @@ img,svg{display:block;max-width:100%}
   position:fixed;top:0;left:0;height:3px;width:0;z-index:200;
   background:var(--blue);box-shadow:0 0 10px rgba(124,92,255,.5);
   transition:width .1s linear;
+}
+
+/* =========================================================
+   SPLASH INTRO — mirrors the brand sheet
+   Exact brand purple (#49397a, sampled from the artwork) so the emblem's
+   own purple tile blends seamlessly and reads as a floating mark. The
+   4.2s CSS auto-hide is a safety net if GSAP/script.js never runs.
+   ========================================================= */
+html.splash-active{overflow:hidden}
+.splash{
+  position:fixed;inset:0;z-index:9998;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(40px,8vh,90px);
+  background:
+    radial-gradient(70% 55% at 50% 30%, rgba(255,255,255,.06) 0%, transparent 70%),
+    #49397a;
+  animation:splashAutoHide 0s 4.2s forwards;
+}
+@keyframes splashAutoHide{to{opacity:0;visibility:hidden;pointer-events:none}}
+.splash__emblem{
+  width:clamp(150px,26vw,240px);height:auto;opacity:0;border-radius:8px;
+  filter:drop-shadow(0 26px 60px rgba(0,0,0,.4));
+}
+.splash__concepts{display:flex;gap:clamp(30px,8vw,90px);opacity:1}
+.splash__concept{display:flex;flex-direction:column;align-items:center;gap:16px;opacity:0}
+.splash__cg{width:clamp(38px,5vw,52px);height:clamp(48px,6vw,66px)}
+.splash__concept span{
+  font-family:var(--display);font-weight:500;font-size:clamp(.66rem,1.4vw,.8rem);
+  letter-spacing:.16em;text-transform:uppercase;color:rgba(239,231,216,.85);
+}
+.splash__skip{
+  position:absolute;bottom:28px;right:28px;z-index:1;
+  background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.24);
+  font-family:var(--display);font-size:.82rem;font-weight:600;
+  padding:9px 20px;border-radius:999px;cursor:pointer;
+  transition:background .2s ease,transform .2s ease;
+}
+.splash__skip:hover{background:rgba(255,255,255,.22);transform:translateY(-2px)}
+@media (max-width:520px){
+  .splash__concepts{gap:22px}
+  .splash__concept span{font-size:.6rem;letter-spacing:.1em}
 }
 
 /* =========================================================
@@ -221,7 +299,9 @@ img,svg{display:block;max-width:100%}
 }
 .nav__inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
 /* ---------- OMNIS wordmark logo (matches brand sheet) ---------- */
-.brand{display:inline-flex;flex-direction:column;align-items:flex-start;gap:2px;line-height:1;padding-top:6px}
+.brand{display:inline-flex;align-items:center;gap:10px;line-height:1}
+.brand__text{display:inline-flex;flex-direction:column;align-items:flex-start;gap:2px;line-height:1;padding-top:6px}
+.brand__mark{width:38px;height:38px;flex:none;border-radius:10px;object-fit:cover;box-shadow:0 6px 16px -8px rgba(60,25,140,.5)}
 .brand__word{
   font-family:var(--logo);font-weight:400;      /* thin geometric, Futura-like */
   font-size:1.55rem;letter-spacing:.3em;line-height:1;
@@ -230,10 +310,15 @@ img,svg{display:block;max-width:100%}
   background:linear-gradient(180deg,#08060f 0%,#241a3d 100%);
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
 }
-/* the dotted "i" — dark stem from the font, violet tittle above it */
-.brand__i{position:relative;display:inline-block}
+/* the dotted "i" — solid violet stem (NOT the parent's transparent
+   gradient-clip fill, which it would otherwise inherit with nothing of
+   its own to clip against, rendering it invisible) + violet tittle above */
+.brand__i{position:relative;display:inline-block;color:var(--violet);-webkit-text-fill-color:var(--violet)}
+/* letter-spacing:.3em pads the glyph box on its right, so a plain left:50%
+   lands right of the actual stem — pull back half the tracking (.15em) so
+   the tittle sits dead-centre over the "I". */
 .brand__i::before{
-  content:"";position:absolute;left:50%;top:-.18em;
+  content:"";position:absolute;left:calc(50% - .15em);top:-.18em;
   width:.22em;height:.22em;border-radius:50%;
   transform:translateX(-50%);
   background:var(--violet);
@@ -415,6 +500,7 @@ img,svg{display:block;max-width:100%}
 
 /* centered OMNIS lockup at the top of the hero */
 .stage__logo{display:flex;flex-direction:column;align-items:center;margin-bottom:clamp(28px,5vh,52px)}
+.brand__mark--hero{width:clamp(64px,9vw,92px);height:clamp(64px,9vw,92px);border-radius:20px;object-fit:cover;margin-bottom:18px;box-shadow:0 18px 40px -14px rgba(91,52,232,.5)}
 .stage__logo .brand__word{font-size:clamp(2.1rem,5.2vw,3.3rem);letter-spacing:.3em;padding-left:.3em;line-height:1}
 .stage__logo .brand__word .brand__i::before{top:-.08em;width:.16em;height:.16em}
 .stage__logo .brand__sub{font-size:clamp(.62rem,1.5vw,.82rem);letter-spacing:.52em;padding-left:.52em;margin-top:8px}
@@ -516,12 +602,246 @@ img,svg{display:block;max-width:100%}
    VALUE
    ========================================================= */
 .value{background:var(--bg-soft)}
-.value__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
-.value__card{padding:30px 26px;transition:transform .3s ease,box-shadow .3s ease}
-.value__card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
-.v-ico{width:54px;height:54px;display:grid;place-items:center;border-radius:15px;font-size:1.5rem;color:var(--blue);background:var(--blue-soft);margin-bottom:18px}
-.value__card h3{font-family:var(--display);font-size:1.12rem;margin-bottom:8px}
-.value__card p{color:var(--muted);font-size:.94rem}
+.value__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+/* value cards now share the widget language: white card, labelled header,
+   pastel tinted panel holding a per-card SVG graphic + the description */
+.value__card{
+  position:relative;display:flex;flex-direction:column;padding:16px;border-radius:22px;background:#fff;
+  border:1px solid var(--line-soft);
+  box-shadow:0 20px 44px -26px rgba(60,25,140,.28);
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.value__card:hover{transform:translateY(-6px);box-shadow:0 28px 56px -26px rgba(60,25,140,.38)}
+.value__head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.value__ic{width:34px;height:34px;flex:none;display:grid;place-items:center;border-radius:9px;color:var(--oc,var(--blue));background:var(--obg,var(--blue-soft))}
+.value__ic svg{width:18px;height:18px}
+.value__title{font-family:var(--display);font-weight:700;font-size:1.02rem;color:var(--ink)}
+.value__panel{
+  flex:1;border-radius:16px;padding:16px;overflow:hidden;
+  display:flex;flex-direction:column;gap:14px;
+  background:
+    radial-gradient(120% 120% at 100% 0%, color-mix(in srgb,var(--oc) 22%,#fff) 0%, transparent 60%),
+    color-mix(in srgb,var(--oc) 12%,#fff);
+}
+.value__desc{color:var(--muted);font-size:.9rem;line-height:1.45;margin-top:auto}
+/* per-card graphics */
+.value__gfx{display:block}
+.value__gfx--area{width:100%;height:66px}
+.value__gfx--area polygon{fill:var(--oc);opacity:.18}
+.value__gfx--area polyline{fill:none;stroke:var(--oc);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.value__gfx:not(.value__gfx--area){width:76px;height:66px;margin:2px auto 0}
+.value__gfx .ring{fill:none;stroke:var(--oc);stroke-width:3.5;opacity:.5}
+.value__gfx .dot{fill:var(--oc)}
+.value__gfx .arrow{fill:none;stroke:var(--oc);stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+.value__gfx--funnel path{fill:var(--oc)}
+.value__gfx--bars rect{fill:var(--oc)}
+
+/* ---- snapshot widget row — Apple/reference_ui dashboard-widget cards:
+   solid white card, small labelled header + "+" affordance, and a pastel
+   tinted inner panel holding a live graphic (area chart / ring / bars / stat) ---- */
+.snapshot-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:30px}
+.snap-card{
+  position:relative;display:flex;flex-direction:column;padding:16px;border-radius:22px;background:#fff;
+  border:1px solid var(--line-soft);
+  box-shadow:0 20px 44px -26px rgba(60,25,140,.28);
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.snap-card:hover{transform:translateY(-5px);box-shadow:0 28px 56px -26px rgba(60,25,140,.38)}
+.snap-card__head{display:flex;align-items:center;gap:9px;margin-bottom:12px}
+.snap-card__ic{width:26px;height:26px;flex:none;display:grid;place-items:center;border-radius:8px;color:var(--oc,var(--blue));background:var(--obg,var(--blue-soft))}
+.snap-card__ic svg{width:15px;height:15px}
+.snap-card__label{font-family:var(--display);font-weight:600;font-size:.86rem;color:var(--ink)}
+/* the little dark "+" affordance top-right, exactly like the reference widgets */
+.snap-card__add{
+  margin-left:auto;width:26px;height:26px;flex:none;display:grid;place-items:center;
+  border-radius:50%;background:var(--ink);color:#fff;font-size:1.1rem;line-height:1;font-weight:500;
+  box-shadow:0 6px 14px -6px rgba(22,15,46,.6);
+}
+/* pastel inner panel — the tinted graphic surface */
+.snap-card__panel{
+  position:relative;flex:1;border-radius:16px;padding:16px;min-height:150px;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:flex-end;gap:12px;
+  background:
+    radial-gradient(120% 120% at 100% 0%, color-mix(in srgb,var(--oc) 22%,#fff) 0%, transparent 60%),
+    color-mix(in srgb,var(--oc) 12%,#fff);
+}
+.snap-card__panel--center{align-items:center;justify-content:center}
+.snap-card__figure b{display:block;font-family:var(--display);font-weight:800;font-size:1.65rem;color:var(--ink);line-height:1}
+.snap-card__figure small{display:block;color:var(--muted);font-size:.74rem;margin-top:5px}
+.snap-card__figure--top{margin-bottom:auto}
+
+/* area chart */
+.snap-area{position:absolute;top:14px;left:0;width:100%;height:70px;display:block}
+.snap-area polygon{fill:var(--oc);opacity:.16}
+.snap-area polyline{fill:none;stroke:var(--oc);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.snap-area circle{fill:#fff;stroke:var(--oc);stroke-width:2.5}
+/* ring */
+.snap-donut{width:112px;height:112px;margin:0;
+  background:conic-gradient(var(--oc,var(--blue)) 0 calc(var(--pos)*1%),color-mix(in srgb,var(--oc,var(--blue)) 35%,#fff) calc(var(--pos)*1%) calc((var(--pos) + var(--neu))*1%),rgba(255,255,255,.7) 0);
+}
+.snap-donut .donut__hole{inset:16px}
+.snap-donut .donut__hole b{font-size:1.4rem;color:var(--oc,var(--blue))}
+.snap-donut .donut__hole small{color:var(--muted)}
+/* bars */
+.snap-bars{height:66px;gap:8px;margin:0}
+.snap-bars span{background:var(--oc,var(--blue));border-radius:6px 6px 3px 3px;box-shadow:0 6px 14px -8px color-mix(in srgb,var(--oc) 60%,transparent)}
+/* squiggle accent */
+.snap-squiggle{width:70%;height:34px;align-self:flex-end}
+.snap-squiggle polyline{fill:none;stroke:var(--oc);stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+
+@media (max-width:1024px){.snapshot-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.snapshot-grid{grid-template-columns:1fr}}
+
+/* =========================================================
+   IMPACT — WITH vs WITHOUT DIGITAL
+   Reference_ui-style pastel widget grid + a segmented pill
+   control (like the reference's "For You / Library" tab).
+   ========================================================= */
+.impact{padding-top:56px}
+
+/* muted "before" glass — desaturated, quiet, low-contrast */
+.glass--muted{
+  background:linear-gradient(150deg,rgba(235,235,240,.6),rgba(235,235,240,.32));
+  border-color:rgba(120,120,135,.28);
+  filter:saturate(.55);
+}
+.glass--muted::before{opacity:.4}
+
+/* vivid "after" glass — brand gradient bleeding through the frost */
+.glass--vivid{
+  background:
+    radial-gradient(120% 130% at 100% 0%, rgba(199,125,255,.30) 0%, transparent 55%),
+    linear-gradient(150deg,rgba(255,255,255,.7),rgba(255,255,255,.4));
+  border-color:rgba(255,255,255,.6);
+}
+
+/* segmented pill toggle */
+.impact__toggle{
+  position:relative;display:flex;gap:4px;width:max-content;margin:0 auto 44px;
+  padding:5px;border-radius:999px;background:rgba(120,110,150,.1);
+  box-shadow:inset 0 1px 3px rgba(60,25,140,.08);
+}
+.impact__toggle-thumb{
+  position:absolute;top:5px;left:5px;height:calc(100% - 10px);width:calc(50% - 5px);
+  border-radius:999px;background:#fff;box-shadow:0 6px 16px -8px rgba(60,25,140,.35);
+  transition:transform .35s cubic-bezier(.4,0,.2,1);z-index:0;
+}
+.impact__toggle[data-active="with"] .impact__toggle-thumb{transform:translateX(100%)}
+.impact__toggle-btn{
+  position:relative;z-index:1;border:0;background:none;cursor:pointer;
+  font-family:var(--display);font-weight:600;font-size:.88rem;color:var(--muted);
+  padding:10px 22px;border-radius:999px;transition:color .3s ease;white-space:nowrap;
+}
+.impact__toggle-btn.is-active{color:var(--ink)}
+
+/* two-column comparison, connected by a big directional arrow */
+.impact__cols{display:grid;grid-template-columns:1fr auto 1fr;gap:28px;align-items:start}
+.impact__arrow{
+  align-self:center;display:grid;place-items:center;width:52px;height:52px;border-radius:50%;
+  background:linear-gradient(135deg,var(--violet),var(--magenta));color:#fff;flex:none;
+  box-shadow:0 16px 30px -14px rgba(124,92,255,.6);
+}
+.impact__arrow svg{width:22px;height:22px}
+.impact__col-head{
+  display:flex;align-items:center;gap:14px;padding:20px 22px;margin-bottom:16px;
+}
+.impact__col-ic{
+  width:46px;height:46px;flex:none;display:grid;place-items:center;border-radius:13px;
+  background:rgba(120,110,150,.14);color:var(--muted);
+}
+.glass--vivid .impact__col-ic{background:var(--blue-soft);color:var(--blue)}
+.impact__col-ic svg{width:24px;height:24px}
+.impact__col-head b{display:block;font-family:var(--display);font-weight:700;font-size:1.02rem;color:var(--ink)}
+.impact__col-head small{color:var(--muted);font-size:.82rem}
+
+.impact__stats{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.impact__stat{padding:20px 18px;text-align:left}
+.impact__stat-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:14px}
+.impact__stat-ic{
+  width:36px;height:36px;flex:none;display:grid;place-items:center;border-radius:10px;
+  background:rgba(120,110,150,.14);color:var(--muted);
+}
+.glass--vivid .impact__stat-ic{background:var(--blue-soft);color:var(--blue)}
+.impact__stat-ic svg{width:18px;height:18px}
+.impact__stat b{display:block;font-family:var(--display);font-weight:700;font-size:1.7rem;color:var(--ink);line-height:1}
+.glass--muted .impact__stat b{color:var(--muted-2)}
+.impact__stat small{color:var(--muted);font-size:.78rem;display:block;margin-top:4px}
+
+/* growth-multiplier badge on the "with" cards — the punchy pictorial delta */
+.impact__delta{
+  font-family:var(--display);font-weight:800;font-size:.8rem;color:#0f9d58;
+  background:rgba(15,157,88,.13);padding:4px 10px;border-radius:999px;white-space:nowrap;
+}
+/* tinted widget panel holding each card's graphic (reference-widget style) */
+.impact__viz{
+  margin-top:16px;border-radius:14px;padding:14px 16px;overflow:hidden;
+  background:rgba(120,110,150,.08);
+}
+.impact__viz--meter{display:flex;align-items:center;padding:26px 16px}
+.glass--vivid .impact__viz{
+  background:
+    radial-gradient(120% 130% at 100% 0%, color-mix(in srgb,var(--violet) 22%,#fff) 0%, transparent 62%),
+    color-mix(in srgb,var(--violet) 10%,#fff);
+}
+/* per-card trend sparkline: flat & grey for "without", rising & violet for "with" */
+.impact__spark{width:100%;height:44px;display:block;margin:0}
+.impact__spark polyline{fill:none;stroke:var(--muted-2);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;opacity:.55}
+.impact__spark--up polyline{stroke:var(--violet);opacity:1;filter:drop-shadow(0 3px 7px rgba(124,92,255,.4))}
+/* the animated draw-in when the card scrolls into view */
+@media (prefers-reduced-motion:no-preference){
+  .impact__spark--up polyline{stroke-dasharray:200;stroke-dashoffset:200;transition:stroke-dashoffset 1.1s ease .2s}
+  .impact__col.is-in .impact__spark--up polyline{stroke-dashoffset:0}
+}
+/* fill meter for the % metrics */
+.impact__meter{width:100%;height:8px;border-radius:999px;background:rgba(120,110,150,.2);margin:0;overflow:hidden}
+.impact__meter i{display:block;height:100%;border-radius:999px;background:var(--muted-2);transition:width 1s cubic-bezier(.2,.7,.3,1)}
+.impact__meter--up i{background:linear-gradient(90deg,var(--violet),var(--magenta))}
+
+/* column status chip — "Stalled" vs "Growing" */
+.impact__status{
+  margin-left:auto;display:inline-flex;align-items:center;gap:5px;
+  font-family:var(--display);font-weight:700;font-size:.72rem;
+  padding:6px 12px;border-radius:999px;white-space:nowrap;
+}
+.impact__status i{display:inline-grid;place-items:center}
+.impact__status i svg{width:13px;height:13px}
+.impact__status--flat{background:rgba(150,140,120,.18);color:#9a8f7a}
+.impact__status--up{background:rgba(15,157,88,.14);color:#0f9d58}
+
+.impact__note{text-align:center;color:var(--muted-2);font-size:.82rem;margin-top:28px}
+.impact__col.is-pulse{animation:impactPulse .6s ease}
+@keyframes impactPulse{0%{transform:scale(1)}35%{transform:scale(1.012)}100%{transform:scale(1)}}
+.impact__col{transition:transform .3s ease,opacity .4s ease,filter .4s ease}
+/* the tab that isn't selected dims back so the chosen side is highlighted */
+.impact__col.is-dim{opacity:.4;filter:saturate(.55)}
+
+/* iPad: this is where side-by-side comparison actually shines — give it
+   real breathing room rather than just shrinking the desktop gap */
+@media (min-width:761px) and (max-width:1024px){
+  .impact__cols{gap:20px}
+  .impact__arrow{width:44px;height:44px}
+  .impact__arrow svg{width:19px;height:19px}
+  .impact__stats{gap:10px}
+  .impact__stat{padding:16px 14px}
+  .impact__stat b{font-size:1.45rem}
+}
+
+/* mobile: one panel visible at a time, switched by the pill toggle */
+@media (max-width:760px){
+  .impact__cols{grid-template-columns:1fr;gap:0}
+  .impact__arrow{display:none}
+  .impact__col.is-hidden{display:none}
+  .impact__stats{gap:12px}
+}
+
+/* touch devices: mirror the hover lift on :active so cards give tap
+   feedback on iPad/phone instead of feeling inert without a mouse */
+@media (hover:none) and (pointer:coarse){
+  .value__card:active,.chan:active,.step:active,.ad-tile:active,.offer:active{
+    transform:translateY(-4px);box-shadow:var(--shadow);
+  }
+  .impact__toggle-btn:active{color:var(--ink)}
+}
 
 /* =========================================================
    SERVICES — APPLE-STYLE PINNED PILLARS
@@ -578,13 +898,18 @@ img,svg{display:block;max-width:100%}
 
 /* card stage — all cards stacked in one cell, only active shown */
 .pillars-stage{display:grid;place-items:center;min-height:460px}
+/* pillar cards now speak the widget-graphic language of the value/snapshot
+   cards: solid white card, labelled icon-chip header, a pastel tinted panel
+   holding a per-pillar SVG graphic + the description, and the feature list
+   rendered as small icon chips instead of plain dots. --oc mirrors --acc so
+   the shared chunky icon-chip glow (styles.css:180) tints per pillar. */
 .ppin{
-  grid-area:1/1;width:min(660px,100%);position:relative;overflow:hidden;
-  padding:46px 48px;border-radius:34px;
-  background:var(--glass-fill-strong);
-  border:.75px solid var(--glass-border);
-  box-shadow:var(--glass-shadow);
-  backdrop-filter:blur(40px) saturate(1.5);-webkit-backdrop-filter:blur(40px) saturate(1.5);
+  --oc:var(--acc);
+  grid-area:1/1;width:min(680px,100%);position:relative;overflow:hidden;
+  padding:30px 32px;border-radius:28px;
+  background:#fff;
+  border:1px solid var(--line-soft);
+  box-shadow:0 34px 76px -34px rgba(60,25,140,.42);
   opacity:0;transform:translateY(70px) scale(.9);
   transition:opacity .8s cubic-bezier(.16,.84,.44,1),transform .8s cubic-bezier(.16,.84,.44,1);
   pointer-events:none;isolation:isolate;
@@ -593,37 +918,67 @@ img,svg{display:block;max-width:100%}
 .ppin.is-past{opacity:0;transform:translateY(-80px) scale(.94)}
 /* big translucent watermark number */
 .ppin__ghost{
-  position:absolute;top:-26px;right:6px;z-index:0;pointer-events:none;
-  font-family:var(--display);font-weight:800;font-size:12rem;line-height:1;
-  color:var(--acc);opacity:.08;
+  position:absolute;top:-30px;right:8px;z-index:0;pointer-events:none;
+  font-family:var(--display);font-weight:800;font-size:11rem;line-height:1;
+  color:var(--acc);opacity:.07;
 }
 .ppin > *{position:relative;z-index:1}
-.ppin__top{display:flex;align-items:center;gap:16px;margin-bottom:22px}
+/* decorative accent motif filling the otherwise-empty top-right corner —
+   injected once per card in script.js, tinted with the card's --acc */
+.ppin .ppin__deco{
+  position:absolute;top:-18px;right:-18px;width:190px;height:190px;z-index:0;
+  color:var(--acc);pointer-events:none;
+}
+.ppin__deco .d-ring{fill:none;stroke:currentColor;stroke-width:2.4;opacity:.16}
+.ppin__deco .d-dot{fill:currentColor;opacity:.22}
+.ppin__deco .d-blob{fill:currentColor;opacity:.06}
+/* header: chunky icon chip + eyebrow "Pillar NN" + title */
+.ppin__head{display:flex;align-items:center;gap:16px;margin-bottom:22px}
+.ppin__heading{display:flex;flex-direction:column;gap:3px;min-width:0}
 .ppin__no{
-  font-family:var(--display);font-weight:800;font-size:1.1rem;letter-spacing:.05em;
-  color:#fff;background:var(--acc);padding:6px 12px;border-radius:10px;
-  box-shadow:0 8px 18px -8px var(--acc);
+  font-family:var(--display);font-weight:700;font-size:.72rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--acc);
 }
 .ppin__ic{
-  width:52px;height:52px;display:grid;place-items:center;border-radius:15px;font-size:1.5rem;
-  color:var(--acc);background:color-mix(in srgb,var(--acc) 14%,transparent);
+  width:52px;height:52px;flex:none;display:grid;place-items:center;border-radius:15px;font-size:1.5rem;
+  color:var(--acc);background:color-mix(in srgb,var(--acc) 14%,#fff);
   border:1px solid color-mix(in srgb,var(--acc) 28%,transparent);
 }
 .ppin__ic svg{width:26px;height:26px}
-.ppin__title{font-family:var(--display);font-weight:700;font-size:clamp(1.5rem,2.6vw,2.1rem);
-  letter-spacing:-.02em;line-height:1.1;margin-bottom:12px;color:var(--ink)}
-.ppin__desc{color:var(--muted);font-size:1.05rem;line-height:1.5;max-width:52ch;margin-bottom:26px}
-.ppin__list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.ppin__title{font-family:var(--display);font-weight:700;font-size:clamp(1.35rem,2.4vw,1.9rem);
+  letter-spacing:-.02em;line-height:1.12;color:var(--ink)}
+/* body: tinted graphic panel beside the icon-chip feature list */
+.ppin__body{display:grid;grid-template-columns:.82fr 1fr;gap:20px;align-items:stretch}
+.ppin__panel{
+  border-radius:18px;padding:18px;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:center;gap:14px;
+  background:
+    radial-gradient(120% 120% at 100% 0%, color-mix(in srgb,var(--acc) 22%,#fff) 0%, transparent 60%),
+    color-mix(in srgb,var(--acc) 12%,#fff);
+}
+.ppin__gfx{display:block;width:100%;height:96px}
+.ppin__gfx .stroke{fill:none;stroke:var(--acc);stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}
+.ppin__gfx .fill{fill:var(--acc)}
+.ppin__gfx .soft{fill:var(--acc);opacity:.16}
+.ppin__gfx .softline{fill:none;stroke:var(--acc);stroke-width:1.6;opacity:.35}
+.ppin__gfx .ring{fill:none;stroke:var(--acc);stroke-width:3.4;opacity:.5;stroke-linecap:round}
+.ppin__desc{color:var(--ink-2);font-size:.96rem;line-height:1.5;margin:0}
+/* feature list → icon chips */
+.ppin__list{list-style:none;display:grid;grid-template-columns:1fr;gap:8px;margin:0}
 .ppin__list li{
-  position:relative;padding:9px 0 9px 28px;font-size:.95rem;color:var(--ink-2);
-  border-top:1px solid var(--line-soft);
+  display:flex;align-items:center;gap:11px;
+  padding:8px 12px;border-radius:12px;font-size:.9rem;font-weight:500;color:var(--ink-2);
+  background:color-mix(in srgb,var(--acc) 6%,#fff);
+  border:1px solid color-mix(in srgb,var(--acc) 15%,transparent);
   opacity:0;transform:translateY(12px);
   transition:opacity .5s ease,transform .5s ease;
 }
-.ppin__list li::before{
-  content:"";position:absolute;left:2px;top:15px;width:8px;height:8px;border-radius:50%;
-  background:var(--acc);box-shadow:0 0 0 4px color-mix(in srgb,var(--acc) 16%,transparent);
+.ppin__chipic{
+  width:28px;height:28px;flex:none;display:grid;place-items:center;border-radius:9px;
+  color:var(--acc);background:color-mix(in srgb,var(--acc) 14%,#fff);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--acc) 20%,transparent);
 }
+.ppin__chipic svg{width:16px;height:16px;stroke-width:2}
 /* stagger the details in when the card becomes active */
 .ppin.is-active .ppin__list li{opacity:1;transform:none}
 .ppin.is-active .ppin__list li:nth-child(1){transition-delay:.16s}
@@ -643,9 +998,32 @@ img,svg{display:block;max-width:100%}
 .pillars-pin.is-static .ppin{grid-area:auto;position:static;opacity:1;transform:none;pointer-events:auto;width:100%}
 .pillars-pin.is-static .ppin__list li{opacity:1;transform:none}
 
-/* phones + narrow tablets: keep the pin, but stack a compact progress
-   bar above a full-width card (no room for the vertical rail) */
-@media (max-width:860px){
+/* iPad (portrait through landscape/Pro): keep the full vertical rail +
+   chapter list experience — just narrower and tighter than desktop —
+   instead of dropping straight to the phone's compact bar. */
+@media (min-width:641px) and (max-width:1024px){
+  .pillars-pin__inner{grid-template-columns:210px 1fr;gap:34px}
+  .pillars-rail__count b{font-size:2.1rem}
+  .pillars-rail__list li{font-size:.86rem}
+  .ppin{padding:30px 30px}
+  .ppin__title{font-size:clamp(1.3rem,3.2vw,1.7rem)}
+  .ppin__desc{font-size:.94rem}
+  .ppin__ghost{font-size:9rem}
+  .story-viz--reach b{font-size:clamp(2.1rem,4.4vw,2.8rem)}
+}
+/* iPad portrait specifically is narrower still — trim once more and stack
+   the graphic panel above the feature chips so neither column gets cramped */
+@media (min-width:641px) and (max-width:900px){
+  .pillars-pin__inner{grid-template-columns:180px 1fr;gap:26px}
+  .pillars-rail__list li{font-size:.82rem}
+  .ppin{padding:26px 24px}
+  .ppin__body{grid-template-columns:1fr;gap:16px}
+  .ppin__gfx{height:80px}
+}
+
+/* phones only: no room for a vertical rail at all — stack a compact
+   progress bar above a full-width card */
+@media (max-width:640px){
   .pillars-pin__intro{padding-top:72px}
   .pillars-pin__inner{display:flex;flex-direction:column;gap:20px;padding:0 4px}
   .pillars-rail{display:flex;align-items:center;gap:14px;padding-left:0;width:100%}
@@ -655,14 +1033,63 @@ img,svg{display:block;max-width:100%}
   .pillars-rail__list{display:none}
   .pillars-rail__bar{flex:1;margin:0}
   .pillars-stage{min-height:0;width:100%}
-  .ppin{padding:26px 22px;width:100%}
-  .ppin__top{margin-bottom:16px}
-  .ppin__title{font-size:clamp(1.45rem,6vw,1.85rem);margin-bottom:8px}
-  .ppin__desc{font-size:.98rem;margin-bottom:18px}
-  .ppin__list{grid-template-columns:1fr;gap:2px}
-  .ppin__list li{padding:8px 0 8px 26px;font-size:.92rem}
-  .ppin__list li::before{top:14px}
+  .ppin{padding:24px 20px;width:100%}
+  .ppin__head{gap:13px;margin-bottom:16px}
+  .ppin__ic{width:46px;height:46px;border-radius:13px}
+  .ppin__ic svg{width:23px;height:23px}
+  .ppin__title{font-size:clamp(1.3rem,6vw,1.7rem)}
+  .ppin__body{grid-template-columns:1fr;gap:14px}
+  .ppin__gfx{height:76px}
+  .ppin__desc{font-size:.94rem}
+  .ppin__list li{font-size:.9rem}
   .ppin__ghost{font-size:7rem;top:-10px}
+}
+
+/* =========================================================
+   STORY — scroll narrative chapter visuals
+   Reuses .pillars-pin / .ppin structure wholesale; these rules
+   only style the small data-viz mounted inside each chapter.
+   ========================================================= */
+/* story chapters share the pillar widget shell: description on the left,
+   the chapter's data-viz mounted inside a tinted panel on the right */
+.ppin__body--story{grid-template-columns:1fr 1fr;align-items:stretch}
+.ppin__body--story .ppin__desc{align-self:center;font-size:1.02rem}
+.ppin__body--story .story-viz{min-height:170px}
+.story-viz{margin:0;justify-content:center}
+.story-viz small{display:block;color:var(--muted-2);font-size:.82rem;margin-top:12px}
+
+.story-viz--flat svg{width:100%;height:60px}
+.story-viz--flat polyline{
+  fill:none;stroke:var(--muted-2);stroke-width:2.5;stroke-linecap:round;
+  stroke-dasharray:6 6;
+}
+.ppin.is-active .story-viz--flat polyline{animation:storyFlatline 3s linear infinite}
+@keyframes storyFlatline{to{stroke-dashoffset:-48}}
+
+.story-bars{height:130px;align-items:flex-end;gap:14px}
+.story-bars span{animation:none;height:0;min-height:6px}
+
+.story-viz--reach b{
+  display:block;font-family:var(--display);font-weight:800;color:var(--acc);
+  font-size:clamp(2.4rem,5vw,3.4rem);line-height:1;
+}
+.story-donut{margin:0}
+.story-donut .donut__hole b{color:var(--acc)}
+
+.story-viz--stats{display:flex;flex-direction:row;gap:32px;flex-wrap:wrap;align-items:center}
+.story-viz--stats b{display:block;font-family:var(--display);font-weight:800;color:var(--acc);font-size:2.1rem;line-height:1}
+.story-viz--stats small{margin-top:8px}
+
+.story-pin__note{text-align:center;color:var(--muted-2);font-size:.82rem;padding:22px 24px 0}
+
+/* stack story description above its viz panel on tablet/phone (this rule
+   sits after .ppin__body--story so it wins over the 1fr-1fr default) */
+@media (max-width:900px){
+  .ppin__body--story{grid-template-columns:1fr}
+}
+@media (max-width:860px){
+  .story-viz--reach b{font-size:2.4rem}
+  .story-viz--stats{gap:24px}
 }
 
 /* =========================================================
@@ -719,7 +1146,7 @@ img,svg{display:block;max-width:100%}
 .channels{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .chan{padding:26px 22px;text-align:center;transition:transform .3s ease,box-shadow .3s ease}
 .chan:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
-.chan__ic{display:inline-grid;place-items:center;width:56px;height:56px;border-radius:15px;font-size:1.5rem;color:var(--blue);background:var(--blue-soft);margin-bottom:14px}
+.chan__ic{display:inline-grid;place-items:center;width:56px;height:56px;border-radius:15px;font-size:1.5rem;color:var(--oc,var(--blue));background:var(--obg,var(--blue-soft));margin-bottom:14px}
 .chan b{font-family:var(--display);display:block;margin-bottom:6px}
 .chan small{color:var(--muted);font-size:.82rem}
 
@@ -729,7 +1156,7 @@ img,svg{display:block;max-width:100%}
 .advert__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .ad-tile{padding:30px 26px;transition:transform .3s ease,box-shadow .3s ease;position:relative;overflow:hidden}
 .ad-tile:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
-.ad-ic{display:inline-grid;place-items:center;width:52px;height:52px;border-radius:13px;font-size:1.4rem;color:var(--blue);background:var(--blue-soft);margin-bottom:16px}
+.ad-ic{display:inline-grid;place-items:center;width:52px;height:52px;border-radius:13px;font-size:1.4rem;color:var(--oc,var(--blue));background:var(--obg,var(--blue-soft));margin-bottom:16px}
 .ad-tile h3{font-family:var(--display);font-size:1.16rem;margin-bottom:8px}
 .ad-tile p{color:var(--muted);font-size:.92rem}
 .advert__grid .ad-tile--wide:first-child,
@@ -742,11 +1169,18 @@ img,svg{display:block;max-width:100%}
 .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:40px}
 .step{padding:26px 22px;transition:transform .3s ease,box-shadow .3s ease}
 .step:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.step__top{display:flex;align-items:center;gap:12px;margin-bottom:16px}
 .step__no{
-  display:inline-grid;place-items:center;width:46px;height:46px;border-radius:13px;
-  font-family:var(--display);font-weight:700;font-size:1.2rem;color:#fff;
-  background:var(--blue);margin-bottom:16px;box-shadow:0 12px 24px -10px rgba(124,92,255,.6);
+  display:inline-grid;place-items:center;width:38px;height:38px;border-radius:11px;flex:none;
+  font-family:var(--display);font-weight:700;font-size:1.02rem;color:#fff;
+  background:var(--oc,var(--blue));
+  box-shadow:0 10px 20px -8px color-mix(in srgb,var(--oc,var(--blue)) 60%,transparent);
 }
+.step__ic{
+  display:inline-grid;place-items:center;width:38px;height:38px;border-radius:11px;flex:none;
+  color:var(--oc,var(--blue));background:var(--obg,var(--blue-soft));
+}
+.step__ic svg{width:20px;height:20px}
 .step h3{font-family:var(--display);font-size:1.02rem;margin-bottom:8px}
 .step p{color:var(--muted);font-size:.88rem}
 .growth__cta{
@@ -868,40 +1302,128 @@ img,svg{display:block;max-width:100%}
   background:linear-gradient(145deg,rgba(255,255,255,.42) 0%,rgba(255,255,255,0) 32%);
   opacity:.9;z-index:0;
 }
+/* form intentionally has NO pointer-glare — a moving light blob over
+   input fields reads as a glitch, not polish. */
 .contact__form--apple::after{display:none}
+/* pointer-tracked specular glare — script.js writes --gx/--gy on
+   pointermove; kept only on the vivid Impact cards where it reads as polish. */
+.glass--vivid::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:1;
+  background:radial-gradient(220px circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.65),transparent 62%);
+  opacity:0;transition:opacity .4s ease;
+}
+.glass--vivid:hover::after{opacity:1}
 .contact__form--apple > *{position:relative;z-index:1}
 .contact__grip{display:block;width:42px;height:5px;border-radius:3px;background:rgba(255,255,255,.45);margin:0 auto 20px}
 
 /* white text — the violet gradient shows through the frost */
 .contact__form--apple .field label{color:rgba(255,255,255,.92)}
+/* near-solid white fields so the typed text reads as dark/black on the
+   purple glass panel (was white-on-translucent → nearly invisible) */
 .contact__form--apple .field input,
 .contact__form--apple .field select,
 .contact__form--apple .field textarea{
-  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);color:#fff;
+  background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.6);color:var(--ink);
   backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
 }
 .contact__form--apple .field input::placeholder,
-.contact__form--apple .field textarea::placeholder{color:rgba(255,255,255,.48)}
+.contact__form--apple .field textarea::placeholder{color:var(--muted-2)}
 .contact__form--apple .field input:hover,
 .contact__form--apple .field select:hover,
-.contact__form--apple .field textarea:hover{background:rgba(255,255,255,.2)}
+.contact__form--apple .field textarea:hover{background:#fff}
 .contact__form--apple .field input:focus,
 .contact__form--apple .field select:focus,
 .contact__form--apple .field textarea:focus{
-  border-color:rgba(255,255,255,.55);background:rgba(255,255,255,.22);box-shadow:0 0 0 4px rgba(255,255,255,.1);
+  border-color:var(--violet);background:#fff;box-shadow:0 0 0 4px rgba(124,92,255,.18);
 }
-.contact__form--apple .field select option{color:#1a1235}
+.contact__form--apple .field select,
+.contact__form--apple .field select option{color:var(--ink)}
+/* leading field icons now sit on white → tint them to the brand violet */
+.contact__form--apple .field__ic{color:var(--violet)}
 .contact__form--apple .form-note{color:#a5f3c4}
 
+/* ---- leading icons inside form fields (app-like, reference-grade) ---- */
+.field__wrap{position:relative}
+.field__ic{
+  position:absolute;left:14px;top:50%;transform:translateY(-50%);
+  width:20px;height:20px;display:grid;place-items:center;color:rgba(255,255,255,.6);
+  pointer-events:none;z-index:2;
+}
+.field__ic svg{width:18px;height:18px}
+.field--icon .field__wrap input,
+.field--icon .field__wrap select{padding-left:44px}
+/* the select arrow spacing already leaves room on the right */
 
+/* ---- submit button arrow + privacy note ---- */
+.contact__form--apple .btn--gold span{transition:transform .25s ease}
+.contact__form--apple .btn--gold:hover span{transform:translateX(4px)}
+.contact__secure{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  margin-top:14px;font-size:.78rem;color:rgba(255,255,255,.7);
+}
+.contact__secure span{width:16px;height:16px;display:inline-grid;place-items:center}
+.contact__secure svg{width:15px;height:15px}
+
+/* ---- proposal-preview widget card (reference Images 6 & 9) ---- */
+.proposal-card{
+  margin-top:30px;padding:22px;border-radius:24px;position:relative;overflow:hidden;
+  background:linear-gradient(160deg,rgba(255,255,255,.9),rgba(255,255,255,.7));
+  border:1px solid rgba(255,255,255,.7);
+  box-shadow:0 24px 50px -26px rgba(60,25,140,.4),inset 0 1px 1px rgba(255,255,255,.9);
+}
+.proposal-card__head{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.proposal-card__ic{
+  width:42px;height:42px;flex:none;display:grid;place-items:center;border-radius:12px;
+  color:#fff;background:linear-gradient(135deg,var(--violet),var(--magenta));
+  box-shadow:0 10px 22px -10px rgba(124,92,255,.7);
+}
+.proposal-card__ic svg{width:22px;height:22px}
+.proposal-card__title{flex:1;min-width:0}
+.proposal-card__title b{display:block;font-family:var(--display);font-weight:700;font-size:1rem;color:var(--ink)}
+.proposal-card__title small{color:var(--muted);font-size:.8rem}
+.proposal-card__badge{
+  margin-left:auto;display:inline-flex;align-items:center;gap:5px;flex:none;
+  font-family:var(--display);font-weight:700;font-size:.74rem;color:var(--violet);
+  background:var(--blue-soft);padding:6px 11px;border-radius:999px;
+}
+.proposal-card__badge i{display:inline-grid;place-items:center}
+.proposal-card__badge svg{width:13px;height:13px}
+
+.proposal-card__chart{position:relative;margin-bottom:16px}
+.proposal-card__chart svg{width:100%;height:96px;display:block}
+.proposal-card__area{fill:url(#propArea)}
+.proposal-card__line{
+  fill:none;stroke:var(--violet);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;
+  filter:drop-shadow(0 3px 6px rgba(124,92,255,.35));
+}
+@media (prefers-reduced-motion:no-preference){
+  .proposal-card__line{stroke-dasharray:340;stroke-dashoffset:340;transition:stroke-dashoffset 1.4s ease .3s}
+  .proposal-card__area{opacity:0;transition:opacity .8s ease .5s}
+  .contact.is-in .proposal-card__line{stroke-dashoffset:0}
+  .contact.is-in .proposal-card__area{opacity:1}
+}
+.proposal-card__dot{fill:#fff;stroke:var(--violet);stroke-width:3}
+.proposal-card__cap{display:flex;align-items:center;gap:7px;font-size:.76rem;color:var(--muted);margin-top:4px}
+.proposal-card__cap i{width:8px;height:8px;border-radius:50%;background:#16a34a;box-shadow:0 0 0 4px rgba(34,197,94,.16)}
+
+.proposal-card__list{list-style:none;display:grid;gap:2px}
+.proposal-card__list li{
+  display:flex;align-items:center;gap:12px;padding:11px 0;
+  font-size:.9rem;color:var(--ink-2);border-top:1px solid var(--line-soft);
+}
+.proposal-card__list li span{
+  width:32px;height:32px;flex:none;display:grid;place-items:center;border-radius:9px;
+  color:var(--violet);background:var(--blue-soft);
+}
+.proposal-card__list li span svg{width:17px;height:17px}
 
 /* =========================================================
    FOOTER
    ========================================================= */
 .footer{background:var(--dark);color:#c7d0e0;padding-top:56px;margin-top:20px}
-.footer .brand__mark{background:linear-gradient(140deg,var(--magenta),var(--violet) 55%,var(--violet-deep))}
 .footer__inner{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;padding-bottom:36px}
 .footer__brand{display:flex;gap:16px;max-width:380px}
+.footer__brand .brand__mark{width:46px;height:46px;flex:none;margin-top:2px;border-radius:12px}
 .footer__brand strong{font-family:var(--display);letter-spacing:.1em;color:#fff}
 .footer__brand p{color:#9aa6bd;font-size:.9rem;margin-top:6px}
 .footer__links{display:flex;flex-wrap:wrap;gap:22px;align-content:flex-start}
@@ -948,7 +1470,9 @@ img,svg{display:block;max-width:100%}
   .section{padding:64px 0}
   .services{grid-template-columns:1fr}
   .value__grid,.channels,.steps,.advert__grid,.offer-grid{grid-template-columns:1fr}
-  .advert__grid .ad-tile--wide{grid-column:span 1}
+  .advert__grid .ad-tile--wide,
+  .advert__grid .ad-tile--wide:first-child,
+  .advert__grid .ad-tile--wide:last-child{grid-column:span 1}
   .hero__stats{grid-template-columns:1fr 1fr}
   .hero__visual{height:320px;transform:scale(.92)}
   .field-row{grid-template-columns:1fr}
@@ -965,6 +1489,26 @@ img,svg{display:block;max-width:100%}
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
+
+/* ====== FLOATING WHATSAPP CONTACT BUTTON ====== */
+.wa-fab{
+  position:fixed;right:22px;bottom:22px;z-index:150;
+  width:58px;height:58px;display:grid;place-items:center;border-radius:50%;
+  background:#25d366;color:#fff;
+  box-shadow:0 14px 30px -8px rgba(37,211,102,.6),0 4px 10px rgba(0,0,0,.15);
+  transition:transform .25s cubic-bezier(.3,1,.4,1),box-shadow .25s ease;
+  animation:waFabPop .5s ease both;
+}
+.wa-fab svg{width:30px;height:30px}
+.wa-fab::before{
+  content:"";position:absolute;inset:0;border-radius:50%;background:#25d366;z-index:-1;
+  animation:waPulse 2.4s ease-out infinite;
+}
+.wa-fab:hover{transform:scale(1.08);box-shadow:0 18px 38px -8px rgba(37,211,102,.75)}
+@keyframes waPulse{0%{transform:scale(1);opacity:.5}70%{transform:scale(1.55);opacity:0}100%{opacity:0}}
+@keyframes waFabPop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+@media (prefers-reduced-motion:reduce){.wa-fab::before{animation:none}.wa-fab{animation:none}}
+@media (max-width:600px){.wa-fab{width:52px;height:52px;right:16px;bottom:16px}.wa-fab svg{width:27px;height:27px}}
 
 /* ====== SUCCESS MODAL ====== */
 .modal-overlay{
@@ -1037,23 +1581,38 @@ img,svg{display:block;max-width:100%}
   margin-bottom:22px;
 }
 .modal-detail{
-  display:inline-flex;align-items:center;gap:7px;
+  display:inline-flex;align-items:center;gap:8px;
   background:rgba(255,255,255,.1);
   border:1px solid rgba(255,255,255,.12);
   border-radius:40px;padding:7px 16px;
   font-size:.85rem;color:rgba(255,255,255,.88);
 }
+.modal-detail__ic{display:inline-grid;place-items:center;color:#c9b6ff}
+.modal-detail__ic svg{width:15px;height:15px}
 
 /* ---- modal action buttons ---- */
 .modal-actions{
   display:flex;flex-direction:column;gap:10px;
   margin-top:4px;
 }
+.modal-mail-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  background:linear-gradient(135deg,var(--violet),var(--magenta));color:#fff;
+  font-size:1rem;font-weight:600;
+  border-radius:14px;padding:15px 0;
+  text-decoration:none;
+  box-shadow:0 14px 30px -12px rgba(124,92,255,.7);
+  transition:transform .15s,box-shadow .2s;
+  width:100%;
+}
+.modal-mail-btn:hover{transform:scale(1.02);box-shadow:0 18px 36px -12px rgba(124,92,255,.8)}
+.modal-mail-btn:active{transform:scale(.98)}
+.modal-mail-btn svg{flex-shrink:0}
 .modal-wa-btn{
   display:inline-flex;align-items:center;justify-content:center;gap:10px;
   background:#25d366;color:#fff;
-  font-size:1rem;font-weight:600;
-  border-radius:14px;padding:15px 0;
+  font-size:.95rem;font-weight:600;
+  border-radius:14px;padding:13px 0;
   text-decoration:none;
   transition:background .2s,transform .15s;
   width:100%;

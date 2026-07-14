@@ -13,6 +13,31 @@
 </head>
 <body>
 
+<!-- ====== SPLASH INTRO — brand-sheet reveal ======
+     The exact Omnis emblem resolves in, then its three concept glyphs
+     (Eighth/Infinity, Star/Luxury, 360/Globe) rise beneath it — mirroring
+     the brand sheet — before the curtain lifts on the page. Plays every
+     load, skipped for prefers-reduced-motion, with a plain-CSS auto-hide
+     safety net so a JS failure can never permanently block the page. ====== -->
+<div class="splash" id="splash">
+  <img class="splash__emblem" id="splashEmblem" src="logo-mark.png" alt="Omnis Digital" width="334" height="334" />
+  <div class="splash__concepts" id="splashConcepts">
+    <div class="splash__concept">
+      <svg class="splash__cg" viewBox="0 0 60 100" fill="none" stroke="#efe7d8" stroke-width="4" stroke-linecap="round"><circle cx="30" cy="31" r="17"/><circle cx="30" cy="69" r="17"/></svg>
+      <span>Eighth / Infinity</span>
+    </div>
+    <div class="splash__concept">
+      <svg class="splash__cg" viewBox="0 0 60 60" fill="#efe7d8"><path d="M30 3C32.5 22 38 27.5 57 30 38 32.5 32.5 38 30 57 27.5 38 22 32.5 3 30 22 27.5 27.5 22 30 3Z"/></svg>
+      <span>Star / Luxury</span>
+    </div>
+    <div class="splash__concept">
+      <svg class="splash__cg" viewBox="0 0 60 60" fill="none" stroke="#efe7d8" stroke-width="4"><circle cx="30" cy="30" r="22"/></svg>
+      <span>360 / Globe</span>
+    </div>
+  </div>
+  <button class="splash__skip" id="splashSkip" type="button" aria-label="Skip intro">Skip</button>
+</div>
+
 <!-- ====== PROGRESS BAR ====== -->
 <div class="scroll-progress" id="scrollProgress"></div>
 
@@ -20,18 +45,21 @@
 <header class="nav" id="nav">
   <div class="container nav__inner">
     <a href="#top" class="brand" aria-label="Omnis Digital home">
-      <span class="brand__word">OMN<span class="brand__i">I</span>S</span>
-      <span class="brand__sub">Digital</span>
+      <img class="brand__mark" src="logo-mark.png" alt="" width="334" height="334" aria-hidden="true" />
+      <span class="brand__text">
+        <span class="brand__word">OMN<span class="brand__i">I</span>S</span>
+        <span class="brand__sub">Digital</span>
+      </span>
     </a>
 
     <nav class="nav__links" id="navLinks">
       <button class="nav__close" id="navClose" aria-label="Close menu">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
       </button>
+      <a href="#impact">Impact</a>
       <a href="#services">Services</a>
       <a href="#intelligence">Intelligence</a>
       <a href="#outreach">Outreach</a>
-      <a href="#advertising">Advertising</a>
       <a href="#compare">Compare</a>
       <a href="#growth">Growth</a>
     </nav>
@@ -50,10 +78,6 @@
 <!-- ====== HERO ====== -->
 <section class="stage stage--brand" id="pitch">
   <div class="container stage__inner">
-    <span class="stage__logo" data-aos="fade-up" data-aos-duration="900">
-      <span class="brand__word">OMN<span class="brand__i">I</span>S</span>
-      <span class="brand__sub">Digital</span>
-    </span>
     <span class="stage__eyebrow" data-aos="fade-up" data-aos-delay="80" data-aos-duration="900">Connect&nbsp; •&nbsp; Communicate&nbsp; •&nbsp; Create Impact</span>
     <h1 class="stage__title" data-aos="fade-up" data-aos-delay="140" data-aos-duration="900">
       Grow Your Brand <span class="cursive" id="cursiveWith">With</span><br />Campaigns <span class="accent">That Win.</span>
@@ -71,9 +95,6 @@
         <span class="btn-x__play" aria-hidden="true">►</span> Explore Services
       </a>
     </div>
-    <a class="stage__scroll" href="#value" aria-label="Scroll to explore">
-      <span class="stage__scroll-mouse"><i></i></span>
-    </a>
   </div>
 </section>
 
@@ -94,27 +115,216 @@
     </div>
 
     <div class="value__grid">
-      <div class="value__card glass" data-aos="fade-up">
-        <div class="v-ico" data-ic="compass"></div>
-        <h3>Strategy-first</h3>
-        <p>Every creative and campaign starts from research, positioning and a measurable objective.</p>
+      <div class="value__card" data-aos="fade-up" style="--obg:var(--tint-a-bg);--oc:var(--tint-a-fg)">
+        <div class="value__head">
+          <span class="value__ic" data-ic="compass"></span>
+          <span class="value__title">Strategy-first</span>
+        </div>
+        <div class="value__panel">
+          <svg class="value__gfx" viewBox="0 0 80 80" aria-hidden="true">
+            <circle cx="40" cy="40" r="30" class="ring"/><circle cx="40" cy="40" r="20" class="ring"/>
+            <circle cx="40" cy="40" r="10" class="ring"/><circle cx="40" cy="40" r="4" class="dot"/>
+            <path class="arrow" d="M40 40 L66 20"/><path class="arrow" d="M66 20 l-8 1 M66 20 l1 8"/>
+          </svg>
+          <p class="value__desc">Every creative and campaign starts from research, positioning and a measurable objective.</p>
+        </div>
       </div>
-      <div class="value__card glass" data-aos="fade-up" data-aos-delay="80">
-        <div class="v-ico" data-ic="chart"></div>
-        <h3>Data-driven</h3>
-        <p>Sentiment, competitor and trend intelligence guide the message before a rupee is spent.</p>
+
+      <div class="value__card" data-aos="fade-up" data-aos-delay="80" style="--obg:var(--tint-c-bg);--oc:var(--tint-c-fg)">
+        <div class="value__head">
+          <span class="value__ic" data-ic="chart"></span>
+          <span class="value__title">Data-driven</span>
+        </div>
+        <div class="value__panel">
+          <svg class="value__gfx value__gfx--area" viewBox="0 0 160 66" preserveAspectRatio="none" aria-hidden="true">
+            <polygon points="0,48 32,40 64,44 96,26 128,30 160,10 160,66 0,66"/>
+            <polyline points="0,48 32,40 64,44 96,26 128,30 160,10"/>
+          </svg>
+          <p class="value__desc">Sentiment, competitor and trend intelligence guide the message before a rupee is spent.</p>
+        </div>
       </div>
-      <div class="value__card glass" data-aos="fade-up" data-aos-delay="160">
-        <div class="v-ico" data-ic="broadcast"></div>
-        <h3>Full-funnel reach</h3>
-        <p>From bulk digital outreach to hoardings and mascots — online and on-ground in sync.</p>
+
+      <div class="value__card" data-aos="fade-up" data-aos-delay="160" style="--obg:var(--tint-d-bg);--oc:var(--tint-d-fg)">
+        <div class="value__head">
+          <span class="value__ic" data-ic="broadcast"></span>
+          <span class="value__title">Full-funnel reach</span>
+        </div>
+        <div class="value__panel">
+          <svg class="value__gfx value__gfx--funnel" viewBox="0 0 100 72" aria-hidden="true">
+            <path d="M6,8 H94 L73,30 H27 Z" style="opacity:.85"/>
+            <path d="M29,36 H71 L61,54 H39 Z" style="opacity:.6"/>
+            <path d="M41,60 H59 L55,70 H45 Z" style="opacity:.4"/>
+          </svg>
+          <p class="value__desc">From bulk digital outreach to hoardings and mascots — online and on-ground in sync.</p>
+        </div>
       </div>
-      <div class="value__card glass" data-aos="fade-up" data-aos-delay="240">
-        <div class="v-ico" data-ic="shield"></div>
-        <h3>Accountable</h3>
-        <p>Weekly / monthly reports, ROI analysis and transparent dashboards — no vanity metrics.</p>
+
+      <div class="value__card" data-aos="fade-up" data-aos-delay="240" style="--obg:var(--tint-e-bg);--oc:var(--tint-e-fg)">
+        <div class="value__head">
+          <span class="value__ic" data-ic="shield"></span>
+          <span class="value__title">Accountable</span>
+        </div>
+        <div class="value__panel">
+          <svg class="value__gfx value__gfx--bars" viewBox="0 0 100 62" aria-hidden="true">
+            <rect x="8" y="34" width="15" height="24" rx="3"/><rect x="31" y="26" width="15" height="32" rx="3"/>
+            <rect x="54" y="16" width="15" height="42" rx="3"/><rect x="77" y="6" width="15" height="52" rx="3"/>
+          </svg>
+          <p class="value__desc">Weekly / monthly reports, ROI analysis and transparent dashboards — no vanity metrics.</p>
+        </div>
       </div>
     </div>
+
+    <div class="snapshot-grid">
+      <!-- Campaign reach — area chart widget -->
+      <div class="snap-card" data-aos="fade-up" style="--obg:var(--tint-a-bg);--oc:var(--tint-a-fg)">
+        <div class="snap-card__head">
+          <span class="snap-card__ic" data-ic="broadcast"></span>
+          <span class="snap-card__label">Campaign reach</span>        </div>
+        <div class="snap-card__panel">
+          <svg class="snap-area" viewBox="0 0 260 90" preserveAspectRatio="none" aria-hidden="true">
+            <polygon points="0,66 43,58 87,62 130,42 173,46 217,24 260,12 260,90 0,90"/>
+            <polyline points="0,66 43,58 87,62 130,42 173,46 217,24 260,12"/>
+            <circle cx="130" cy="42" r="3.5"/><circle cx="217" cy="24" r="3.5"/><circle cx="260" cy="12" r="3.5"/>
+          </svg>
+          <div class="snap-card__figure">
+            <b><span data-count="250000" data-suffix="+">0</span></b>
+            <small>People reached / campaign</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sentiment — donut widget -->
+      <div class="snap-card" data-aos="fade-up" data-aos-delay="80" style="--obg:var(--tint-c-bg);--oc:var(--tint-c-fg)">
+        <div class="snap-card__head">
+          <span class="snap-card__ic" data-ic="chart"></span>
+          <span class="snap-card__label">Sentiment</span>        </div>
+        <div class="snap-card__panel snap-card__panel--center">
+          <div class="donut snap-donut" style="--pos:82;--neu:10"><div class="donut__hole"><b>82%</b><small>Positive</small></div></div>
+        </div>
+      </div>
+
+      <!-- Engagement — bar widget -->
+      <div class="snap-card" data-aos="fade-up" data-aos-delay="160" style="--obg:var(--tint-d-bg);--oc:var(--tint-d-fg)">
+        <div class="snap-card__head">
+          <span class="snap-card__ic" data-ic="target"></span>
+          <span class="snap-card__label">Engagement</span>        </div>
+        <div class="snap-card__panel">
+          <div class="viz-bars snap-bars">
+            <span style="--h:28%"></span><span style="--h:46%"></span><span style="--h:38%"></span><span style="--h:64%"></span><span style="--h:80%"></span><span style="--h:96%"></span>
+          </div>
+          <div class="snap-card__figure">
+            <b>+41%</b>
+            <small>Weekly engagement, trending up</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Response time — stat widget -->
+      <div class="snap-card" data-aos="fade-up" data-aos-delay="240" style="--obg:var(--tint-e-bg);--oc:var(--tint-e-fg)">
+        <div class="snap-card__head">
+          <span class="snap-card__ic" data-ic="clock"></span>
+          <span class="snap-card__label">Response time</span>        </div>
+        <div class="snap-card__panel">
+          <div class="snap-card__figure snap-card__figure--top">
+            <b><span data-count="5" data-suffix=" min">0</span></b>
+            <small>Avg. automated first response</small>
+          </div>
+          <svg class="snap-squiggle" viewBox="0 0 120 40" preserveAspectRatio="none" aria-hidden="true">
+            <polyline points="0,32 24,28 48,30 72,18 96,20 120,6"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== IMPACT — WITH vs WITHOUT DIGITAL ====== -->
+<section class="section impact" id="impact">
+  <div class="container">
+    <div class="section-head" data-aos="fade-up">
+      <span class="kicker">The cost of standing still</span>
+      <h2 class="section-title">What changes when you go digital.</h2>
+      <p class="section-lead">Same business, two paths. This is the gap Omnis Digital closes.</p>
+    </div>
+
+    <div class="impact__toggle" id="impactToggle" role="tablist" aria-label="Compare with and without digital">
+      <span class="impact__toggle-thumb" aria-hidden="true"></span>
+      <button class="impact__toggle-btn is-active" data-mode="without" role="tab" aria-selected="true">Without Digital</button>
+      <button class="impact__toggle-btn" data-mode="with" role="tab" aria-selected="false">With Omnis Digital</button>
+    </div>
+
+    <div class="impact__cols">
+      <div class="impact__col impact__col--without" data-panel="without">
+        <div class="impact__col-head glass glass--muted">
+          <span class="impact__col-ic" data-ic="zap-off"></span>
+          <div><b>Without Digital Presence</b><small>Word-of-mouth, offline only</small></div>
+          <span class="impact__status impact__status--flat"><i data-ic="trend-down"></i> Stalled</span>
+        </div>
+        <div class="impact__stats">
+          <div class="impact__stat glass glass--muted">
+            <div class="impact__stat-head"><span class="impact__stat-ic" data-ic="users"></span></div>
+            <b><span data-count="4">0</span></b>
+            <small>Leads / month</small>
+            <svg class="impact__spark" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,19 25,20 50,19 75,21 100,20"/></svg>
+          </div>
+          <div class="impact__stat glass glass--muted">
+            <div class="impact__stat-head"><span class="impact__stat-ic" data-ic="broadcast"></span></div>
+            <b><span data-count="800">0</span></b>
+            <small>People reached / campaign</small>
+            <svg class="impact__spark" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,18 25,20 50,19 75,20 100,21"/></svg>
+          </div>
+          <div class="impact__stat glass glass--muted">
+            <div class="impact__stat-head"><span class="impact__stat-ic" data-ic="message"></span></div>
+            <b><span data-count="1">0</span></b>
+            <small>Reviews / month</small>
+            <svg class="impact__spark" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,20 25,20 50,21 75,20 100,20"/></svg>
+          </div>
+          <div class="impact__stat glass glass--muted">
+            <div class="impact__stat-head"><span class="impact__stat-ic" data-ic="target"></span></div>
+            <b><span data-count="12" data-suffix="%">0</span></b>
+            <small>Brand recall</small>
+            <div class="impact__meter"><i style="width:12%"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="impact__arrow" aria-hidden="true"><span data-ic="arrow-up-right"></span></div>
+
+      <div class="impact__col impact__col--with" data-panel="with">
+        <div class="impact__col-head glass glass--vivid">
+          <span class="impact__col-ic" data-ic="rocket"></span>
+          <div><b>With Omnis Digital</b><small>Strategy, data &amp; omnichannel reach</small></div>
+          <span class="impact__status impact__status--up"><i data-ic="arrow-up-right"></i> Growing</span>
+        </div>
+        <div class="impact__stats">
+          <div class="impact__stat glass glass--vivid">
+            <div class="impact__stat-head"><span class="impact__stat-ic" data-ic="users"></span><span class="impact__delta">36×</span></div>
+            <b><span data-count="145" data-suffix="+">0</span></b>
+            <small>Qualified leads / month</small>
+            <svg class="impact__spark impact__spark--up" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,27 25,23 50,16 75,9 100,2"/></svg>
+          </div>
+          <div class="impact__stat glass glass--vivid">
+            <div class="impact__stat-head"><span class="impact__stat-ic" data-ic="broadcast"></span><span class="impact__delta">312×</span></div>
+            <b><span data-count="250000" data-suffix="+">0</span></b>
+            <small>People reached / campaign</small>
+            <svg class="impact__spark impact__spark--up" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,28 25,25 50,17 75,8 100,1"/></svg>
+          </div>
+          <div class="impact__stat glass glass--vivid">
+            <div class="impact__stat-head"><span class="impact__stat-ic" data-ic="message"></span><span class="impact__delta">20×</span></div>
+            <b><span data-count="20" data-suffix="+">0</span></b>
+            <small>Reviews / month</small>
+            <svg class="impact__spark impact__spark--up" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,26 25,21 50,15 75,11 100,3"/></svg>
+          </div>
+          <div class="impact__stat glass glass--vivid">
+            <div class="impact__stat-head"><span class="impact__stat-ic" data-ic="target"></span><span class="impact__delta">5.7×</span></div>
+            <b><span data-count="68" data-suffix="%">0</span></b>
+            <small>Brand recall</small>
+            <div class="impact__meter impact__meter--up"><i style="width:68%"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="impact__note">Illustrative example based on typical outcomes — actual results vary by industry, market and budget.</p>
   </div>
 </section>
 
@@ -151,125 +361,243 @@
         <div class="pillars-stage" id="pillarsStage">
           <article class="ppin is-active" style="--acc:#7c5cff">
             <span class="ppin__ghost">01</span>
-            <div class="ppin__top"><span class="ppin__no">01</span><span class="ppin__ic" data-ic="monitor"></span></div>
-            <h3 class="ppin__title">Digital Presence &amp; Strategy</h3>
-            <p class="ppin__desc">Websites, branding and always-on social that make your brand impossible to scroll past.</p>
-            <ul class="ppin__list">
-              <li>Website Design &amp; Development</li>
-              <li>Website Maintenance</li>
-              <li>Social Media Management</li>
-              <li>Content — Posts, Reels, Stories</li>
-              <li>Digital Branding &amp; Identity</li>
-              <li>Brochures &amp; Creatives</li>
-              <li>Campaign Strategy Planning</li>
-            </ul>
+            <div class="ppin__head">
+              <span class="ppin__ic" data-ic="monitor"></span>
+              <div class="ppin__heading">
+                <span class="ppin__no">Pillar 01</span>
+                <h3 class="ppin__title">Digital Presence &amp; Strategy</h3>
+              </div>
+            </div>
+            <div class="ppin__body">
+              <div class="ppin__panel">
+                <svg class="ppin__gfx" viewBox="0 0 200 96" aria-hidden="true">
+                  <rect class="soft" x="20" y="14" width="160" height="68" rx="10"/>
+                  <path class="softline" d="M20 32 H180"/>
+                  <circle class="fill" cx="32" cy="23" r="2.6"/><circle class="fill" cx="41" cy="23" r="2.6"/><circle class="fill" cx="50" cy="23" r="2.6"/>
+                  <rect class="fill" x="30" y="42" width="66" height="30" rx="6" style="opacity:.55"/>
+                  <rect class="fill" x="106" y="42" width="64" height="9" rx="4" style="opacity:.5"/>
+                  <rect class="fill" x="106" y="56" width="48" height="9" rx="4" style="opacity:.32"/>
+                </svg>
+                <p class="ppin__desc">Websites, branding and always-on social that make your brand impossible to scroll past.</p>
+              </div>
+              <ul class="ppin__list">
+                <li><span class="ppin__chipic" data-ic="layout"></span>Website Design &amp; Development</li>
+                <li><span class="ppin__chipic" data-ic="repeat"></span>Website Maintenance</li>
+                <li><span class="ppin__chipic" data-ic="share"></span>Social Media Management</li>
+                <li><span class="ppin__chipic" data-ic="image"></span>Content — Posts, Reels, Stories</li>
+                <li><span class="ppin__chipic" data-ic="palette"></span>Digital Branding &amp; Identity</li>
+                <li><span class="ppin__chipic" data-ic="file"></span>Brochures &amp; Creatives</li>
+                <li><span class="ppin__chipic" data-ic="compass"></span>Campaign Strategy Planning</li>
+              </ul>
+            </div>
           </article>
 
           <article class="ppin" style="--acc:#22a06b">
             <span class="ppin__ghost">02</span>
-            <div class="ppin__top"><span class="ppin__no">02</span><span class="ppin__ic" data-ic="chart"></span></div>
-            <h3 class="ppin__title">Data, Analytics &amp; Intelligence</h3>
-            <p class="ppin__desc">Sentiment, competitor and trend intelligence that tells you what to say before you spend a rupee.</p>
-            <ul class="ppin__list">
-              <li>Transparency Dashboards</li>
-              <li>Sentiment Analysis</li>
-              <li>Public Response Analysis</li>
-              <li>Reputation Management</li>
-              <li>Competitor Analysis</li>
-              <li>Profiling Reports</li>
-              <li>Trend Analysis &amp; Insights</li>
-            </ul>
+            <div class="ppin__head">
+              <span class="ppin__ic" data-ic="chart"></span>
+              <div class="ppin__heading">
+                <span class="ppin__no">Pillar 02</span>
+                <h3 class="ppin__title">Data, Analytics &amp; Intelligence</h3>
+              </div>
+            </div>
+            <div class="ppin__body">
+              <div class="ppin__panel">
+                <svg class="ppin__gfx" viewBox="0 0 200 96" preserveAspectRatio="none" aria-hidden="true">
+                  <polygon class="soft" points="0,66 33,56 66,60 100,38 133,44 166,20 200,10 200,96 0,96"/>
+                  <polyline class="stroke" points="0,66 33,56 66,60 100,38 133,44 166,20 200,10"/>
+                </svg>
+                <p class="ppin__desc">Sentiment, competitor and trend intelligence that tells you what to say before you spend a rupee.</p>
+              </div>
+              <ul class="ppin__list">
+                <li><span class="ppin__chipic" data-ic="monitor"></span>Transparency Dashboards</li>
+                <li><span class="ppin__chipic" data-ic="smile"></span>Sentiment Analysis</li>
+                <li><span class="ppin__chipic" data-ic="chat"></span>Public Response Analysis</li>
+                <li><span class="ppin__chipic" data-ic="shield"></span>Reputation Management</li>
+                <li><span class="ppin__chipic" data-ic="search"></span>Competitor Analysis</li>
+                <li><span class="ppin__chipic" data-ic="file"></span>Profiling Reports</li>
+                <li><span class="ppin__chipic" data-ic="chart"></span>Trend Analysis &amp; Insights</li>
+              </ul>
+            </div>
           </article>
 
           <article class="ppin" style="--acc:#7c5cff">
             <span class="ppin__ghost">03</span>
-            <div class="ppin__top"><span class="ppin__no">03</span><span class="ppin__ic" data-ic="chat"></span></div>
-            <h3 class="ppin__title">Communication &amp; Outreach</h3>
-            <p class="ppin__desc">Reach a million people across every channel they actually use — automatically.</p>
-            <ul class="ppin__list">
-              <li>IVR Calling Systems</li>
-              <li>Bulk SMS Campaigns</li>
-              <li>Bulk WhatsApp Messaging</li>
-              <li>Bulk RCS Messaging</li>
-              <li>Bulk Email &amp; MMS</li>
-              <li>Automated Workflows</li>
-              <li>Contact Database Mgmt</li>
-            </ul>
+            <div class="ppin__head">
+              <span class="ppin__ic" data-ic="chat"></span>
+              <div class="ppin__heading">
+                <span class="ppin__no">Pillar 03</span>
+                <h3 class="ppin__title">Communication &amp; Outreach</h3>
+              </div>
+            </div>
+            <div class="ppin__body">
+              <div class="ppin__panel">
+                <svg class="ppin__gfx" viewBox="0 0 200 96" aria-hidden="true">
+                  <circle class="fill" cx="100" cy="48" r="7"/>
+                  <path class="ring" d="M84 30a24 24 0 0 0 0 36M116 30a24 24 0 0 1 0 36"/>
+                  <path class="ring" d="M70 18a42 42 0 0 0 0 60M130 18a42 42 0 0 1 0 60"/>
+                </svg>
+                <p class="ppin__desc">Reach a million people across every channel they actually use — automatically.</p>
+              </div>
+              <ul class="ppin__list">
+                <li><span class="ppin__chipic" data-ic="phone"></span>IVR Calling Systems</li>
+                <li><span class="ppin__chipic" data-ic="message"></span>Bulk SMS Campaigns</li>
+                <li><span class="ppin__chipic" data-ic="whatsapp"></span>Bulk WhatsApp Messaging</li>
+                <li><span class="ppin__chipic" data-ic="broadcast"></span>Bulk RCS Messaging</li>
+                <li><span class="ppin__chipic" data-ic="mail"></span>Bulk Email &amp; MMS</li>
+                <li><span class="ppin__chipic" data-ic="workflow"></span>Automated Workflows</li>
+                <li><span class="ppin__chipic" data-ic="database"></span>Contact Database Mgmt</li>
+              </ul>
+            </div>
           </article>
 
           <article class="ppin" style="--acc:#e11d8f">
             <span class="ppin__ghost">04</span>
-            <div class="ppin__top"><span class="ppin__no">04</span><span class="ppin__ic" data-ic="video"></span></div>
-            <h3 class="ppin__title">Media Production &amp; Content</h3>
-            <p class="ppin__desc">Scroll-stopping films, photography and creative — produced end to end, in house.</p>
-            <ul class="ppin__list">
-              <li>Professional Photography</li>
-              <li>Event &amp; Campaign Video</li>
-              <li>Campaign Shoot Planning</li>
-              <li>Editing &amp; Post Production</li>
-              <li>Ad Film Creation</li>
-              <li>Custom Client Content</li>
-              <li>Documentary Videos</li>
-            </ul>
+            <div class="ppin__head">
+              <span class="ppin__ic" data-ic="video"></span>
+              <div class="ppin__heading">
+                <span class="ppin__no">Pillar 04</span>
+                <h3 class="ppin__title">Media Production &amp; Content</h3>
+              </div>
+            </div>
+            <div class="ppin__body">
+              <div class="ppin__panel">
+                <svg class="ppin__gfx" viewBox="0 0 200 96" aria-hidden="true">
+                  <rect class="soft" x="58" y="20" width="84" height="56" rx="12"/>
+                  <path class="fill" d="M92 36 v24 l22 -12 z"/>
+                  <rect class="fill" x="26" y="34" width="16" height="28" rx="4" style="opacity:.4"/>
+                  <rect class="fill" x="158" y="34" width="16" height="28" rx="4" style="opacity:.4"/>
+                </svg>
+                <p class="ppin__desc">Scroll-stopping films, photography and creative — produced end to end, in house.</p>
+              </div>
+              <ul class="ppin__list">
+                <li><span class="ppin__chipic" data-ic="camera"></span>Professional Photography</li>
+                <li><span class="ppin__chipic" data-ic="video"></span>Event &amp; Campaign Video</li>
+                <li><span class="ppin__chipic" data-ic="calendar"></span>Campaign Shoot Planning</li>
+                <li><span class="ppin__chipic" data-ic="palette"></span>Editing &amp; Post Production</li>
+                <li><span class="ppin__chipic" data-ic="megaphone"></span>Ad Film Creation</li>
+                <li><span class="ppin__chipic" data-ic="image"></span>Custom Client Content</li>
+                <li><span class="ppin__chipic" data-ic="newspaper"></span>Documentary Videos</li>
+              </ul>
+            </div>
           </article>
 
           <article class="ppin" style="--acc:#d97706">
             <span class="ppin__ghost">05</span>
-            <div class="ppin__top"><span class="ppin__no">05</span><span class="ppin__ic" data-ic="megaphone"></span></div>
-            <h3 class="ppin__title">Advertising &amp; Promotions</h3>
-            <p class="ppin__desc">Own every screen and every street — from highway hoardings to sky balloons and mascots.</p>
-            <ul class="ppin__list">
-              <li>Outdoor Advertising</li>
-              <li>Auto / Vehicle Ads</li>
-              <li>Cubical / Booth Ads</li>
-              <li>Sky Balloon Campaigns</li>
-              <li>Hoardings &amp; Flex Printing</li>
-              <li>Pamphlets &amp; Posters</li>
-              <li>Mascots &amp; Costumes</li>
-            </ul>
+            <div class="ppin__head">
+              <span class="ppin__ic" data-ic="megaphone"></span>
+              <div class="ppin__heading">
+                <span class="ppin__no">Pillar 05</span>
+                <h3 class="ppin__title">Advertising &amp; Promotions</h3>
+              </div>
+            </div>
+            <div class="ppin__body">
+              <div class="ppin__panel">
+                <svg class="ppin__gfx" viewBox="0 0 200 96" aria-hidden="true">
+                  <rect class="soft" x="48" y="14" width="104" height="48" rx="8"/>
+                  <circle class="fill" cx="130" cy="28" r="6" style="opacity:.6"/>
+                  <path class="stroke" d="M60 52 l22 -16 15 9 20 -18"/>
+                  <path class="stroke" d="M84 82 v-20 M116 82 v-20"/>
+                </svg>
+                <p class="ppin__desc">Own every screen and every street — from highway hoardings to sky balloons and mascots.</p>
+              </div>
+              <ul class="ppin__list">
+                <li><span class="ppin__chipic" data-ic="billboard"></span>Outdoor Advertising</li>
+                <li><span class="ppin__chipic" data-ic="truck"></span>Auto / Vehicle Ads</li>
+                <li><span class="ppin__chipic" data-ic="kiosk"></span>Cubical / Booth Ads</li>
+                <li><span class="ppin__chipic" data-ic="balloon"></span>Sky Balloon Campaigns</li>
+                <li><span class="ppin__chipic" data-ic="image"></span>Hoardings &amp; Flex Printing</li>
+                <li><span class="ppin__chipic" data-ic="file"></span>Pamphlets &amp; Posters</li>
+                <li><span class="ppin__chipic" data-ic="smile"></span>Mascots &amp; Costumes</li>
+              </ul>
+            </div>
           </article>
 
           <article class="ppin" style="--acc:#0d9488">
             <span class="ppin__ghost">06</span>
-            <div class="ppin__top"><span class="ppin__no">06</span><span class="ppin__ic" data-ic="target"></span></div>
-            <h3 class="ppin__title">Campaign Management</h3>
-            <p class="ppin__desc">Full ground-plus-digital campaigns, run from a single accountable war-room.</p>
-            <ul class="ppin__list">
-              <li>Political / Social Campaigns</li>
-              <li>Awareness Campaign Design</li>
-              <li>Ground + Digital Strategy</li>
-              <li>Crisis Communication</li>
-              <li>Public Engagement Planning</li>
-              <li>Influencer Outreach</li>
-            </ul>
+            <div class="ppin__head">
+              <span class="ppin__ic" data-ic="target"></span>
+              <div class="ppin__heading">
+                <span class="ppin__no">Pillar 06</span>
+                <h3 class="ppin__title">Campaign Management</h3>
+              </div>
+            </div>
+            <div class="ppin__body">
+              <div class="ppin__panel">
+                <svg class="ppin__gfx" viewBox="0 0 200 96" aria-hidden="true">
+                  <circle class="ring" cx="96" cy="48" r="32"/><circle class="ring" cx="96" cy="48" r="20"/>
+                  <circle class="fill" cx="96" cy="48" r="6"/>
+                  <path class="stroke" d="M96 48 L150 20"/><path class="stroke" d="M150 20 l-10 1 M150 20 l1 10"/>
+                </svg>
+                <p class="ppin__desc">Full ground-plus-digital campaigns, run from a single accountable war-room.</p>
+              </div>
+              <ul class="ppin__list">
+                <li><span class="ppin__chipic" data-ic="megaphone"></span>Political / Social Campaigns</li>
+                <li><span class="ppin__chipic" data-ic="target"></span>Awareness Campaign Design</li>
+                <li><span class="ppin__chipic" data-ic="compass"></span>Ground + Digital Strategy</li>
+                <li><span class="ppin__chipic" data-ic="shield"></span>Crisis Communication</li>
+                <li><span class="ppin__chipic" data-ic="users"></span>Public Engagement Planning</li>
+                <li><span class="ppin__chipic" data-ic="share"></span>Influencer Outreach</li>
+              </ul>
+            </div>
           </article>
 
           <article class="ppin" style="--acc:#2563eb">
             <span class="ppin__ghost">07</span>
-            <div class="ppin__top"><span class="ppin__no">07</span><span class="ppin__ic" data-ic="clipboard"></span></div>
-            <h3 class="ppin__title">Monitoring &amp; Reporting</h3>
-            <p class="ppin__desc">Live dashboards and ROI reports that show exactly what's working — every week.</p>
-            <ul class="ppin__list">
-              <li>Performance Tracking</li>
-              <li>Weekly / Monthly Reports</li>
-              <li>ROI Analysis</li>
-              <li>Engagement Metrics</li>
-              <li>Feedback &amp; Improvement</li>
-            </ul>
+            <div class="ppin__head">
+              <span class="ppin__ic" data-ic="clipboard"></span>
+              <div class="ppin__heading">
+                <span class="ppin__no">Pillar 07</span>
+                <h3 class="ppin__title">Monitoring &amp; Reporting</h3>
+              </div>
+            </div>
+            <div class="ppin__body">
+              <div class="ppin__panel">
+                <svg class="ppin__gfx" viewBox="0 0 200 96" aria-hidden="true">
+                  <rect class="fill" x="24" y="54" width="26" height="26" rx="5" style="opacity:.4"/>
+                  <rect class="fill" x="62" y="42" width="26" height="38" rx="5" style="opacity:.58"/>
+                  <rect class="fill" x="100" y="30" width="26" height="50" rx="5" style="opacity:.76"/>
+                  <rect class="fill" x="138" y="18" width="26" height="62" rx="5"/>
+                  <polyline class="stroke" points="37,48 75,36 113,24 151,12"/>
+                </svg>
+                <p class="ppin__desc">Live dashboards and ROI reports that show exactly what's working — every week.</p>
+              </div>
+              <ul class="ppin__list">
+                <li><span class="ppin__chipic" data-ic="chart"></span>Performance Tracking</li>
+                <li><span class="ppin__chipic" data-ic="calendar"></span>Weekly / Monthly Reports</li>
+                <li><span class="ppin__chipic" data-ic="arrow-up-right"></span>ROI Analysis</li>
+                <li><span class="ppin__chipic" data-ic="target"></span>Engagement Metrics</li>
+                <li><span class="ppin__chipic" data-ic="repeat"></span>Feedback &amp; Improvement</li>
+              </ul>
+            </div>
           </article>
 
           <article class="ppin" style="--acc:#7c3aed">
             <span class="ppin__ghost">08</span>
-            <div class="ppin__top"><span class="ppin__no">08</span><span class="ppin__ic" data-ic="sparkle"></span></div>
-            <h3 class="ppin__title">Additional Value Services</h3>
-            <p class="ppin__desc">PR, events, community and training that keep your brand moving long after launch.</p>
-            <ul class="ppin__list">
-              <li>Event Promotion &amp; Coverage</li>
-              <li>Press Release Coordination</li>
-              <li>Media Coordination</li>
-              <li>Community Engagement</li>
-              <li>Training &amp; Workshops</li>
-            </ul>
+            <div class="ppin__head">
+              <span class="ppin__ic" data-ic="sparkle"></span>
+              <div class="ppin__heading">
+                <span class="ppin__no">Pillar 08</span>
+                <h3 class="ppin__title">Additional Value Services</h3>
+              </div>
+            </div>
+            <div class="ppin__body">
+              <div class="ppin__panel">
+                <svg class="ppin__gfx" viewBox="0 0 200 96" aria-hidden="true">
+                  <path class="fill" d="M100 22 l7 18 18 7 -18 7 -7 18 -7 -18 -18 -7 18 -7z"/>
+                  <path class="fill" d="M56 34 l3.5 9 9 3.5 -9 3.5 -3.5 9 -3.5 -9 -9 -3.5 9 -3.5z" style="opacity:.5"/>
+                  <path class="fill" d="M146 50 l3.5 9 9 3.5 -9 3.5 -3.5 9 -3.5 -9 -9 -3.5 9 -3.5z" style="opacity:.5"/>
+                </svg>
+                <p class="ppin__desc">PR, events, community and training that keep your brand moving long after launch.</p>
+              </div>
+              <ul class="ppin__list">
+                <li><span class="ppin__chipic" data-ic="calendar"></span>Event Promotion &amp; Coverage</li>
+                <li><span class="ppin__chipic" data-ic="newspaper"></span>Press Release Coordination</li>
+                <li><span class="ppin__chipic" data-ic="broadcast"></span>Media Coordination</li>
+                <li><span class="ppin__chipic" data-ic="users"></span>Community Engagement</li>
+                <li><span class="ppin__chipic" data-ic="rocket"></span>Training &amp; Workshops</li>
+              </ul>
+            </div>
           </article>
         </div>
       </div>
@@ -435,63 +763,142 @@
     </div>
 
     <div class="channels">
-      <div class="chan glass" data-aos="zoom-in"><span class="chan__ic" data-ic="phone"></span><b>IVR Calling</b><small>Voice broadcasts &amp; press-key surveys</small></div>
-      <div class="chan glass" data-aos="zoom-in" data-aos-delay="50"><span class="chan__ic" data-ic="message"></span><b>Bulk SMS</b><small>Instant, high open-rate reach</small></div>
-      <div class="chan glass" data-aos="zoom-in" data-aos-delay="100"><span class="chan__ic" data-ic="whatsapp"></span><b>WhatsApp</b><small>Rich, verified business messaging</small></div>
-      <div class="chan glass" data-aos="zoom-in" data-aos-delay="150"><span class="chan__ic" data-ic="chat"></span><b>RCS</b><small>Branded, interactive rich cards</small></div>
-      <div class="chan glass" data-aos="zoom-in" data-aos-delay="200"><span class="chan__ic" data-ic="mail"></span><b>Bulk Email</b><small>Newsletters &amp; nurture flows</small></div>
-      <div class="chan glass" data-aos="zoom-in" data-aos-delay="250"><span class="chan__ic" data-ic="image"></span><b>Bulk MMS</b><small>Image &amp; video-led blasts</small></div>
-      <div class="chan glass" data-aos="zoom-in" data-aos-delay="300"><span class="chan__ic" data-ic="workflow"></span><b>Automation</b><small>Triggered multi-step workflows</small></div>
-      <div class="chan glass" data-aos="zoom-in" data-aos-delay="350"><span class="chan__ic" data-ic="database"></span><b>Database</b><small>Clean, segmented contact lists</small></div>
+      <div class="chan glass" data-aos="zoom-in" style="--obg:var(--tint-a-bg);--oc:var(--tint-a-fg)"><span class="chan__ic" data-ic="phone"></span><b>IVR Calling</b><small>Voice broadcasts &amp; surveys</small></div>
+      <div class="chan glass" data-aos="zoom-in" data-aos-delay="50" style="--obg:var(--tint-c-bg);--oc:var(--tint-c-fg)"><span class="chan__ic" data-ic="message"></span><b>Bulk SMS</b><small>Instant, high open-rate reach</small></div>
+      <div class="chan glass" data-aos="zoom-in" data-aos-delay="100" style="--obg:var(--tint-e-bg);--oc:var(--tint-e-fg)"><span class="chan__ic" data-ic="whatsapp"></span><b>WhatsApp</b><small>Verified business messaging</small></div>
+      <div class="chan glass" data-aos="zoom-in" data-aos-delay="150" style="--obg:var(--tint-b-bg);--oc:var(--tint-b-fg)"><span class="chan__ic" data-ic="chat"></span><b>RCS</b><small>Branded, interactive cards</small></div>
+      <div class="chan glass" data-aos="zoom-in" data-aos-delay="200" style="--obg:var(--tint-d-bg);--oc:var(--tint-d-fg)"><span class="chan__ic" data-ic="mail"></span><b>Bulk Email</b><small>Newsletters &amp; nurture flows</small></div>
+      <div class="chan glass" data-aos="zoom-in" data-aos-delay="250" style="--obg:var(--tint-b-bg);--oc:var(--tint-b-fg)"><span class="chan__ic" data-ic="image"></span><b>Bulk MMS</b><small>Image &amp; video-led blasts</small></div>
+      <div class="chan glass" data-aos="zoom-in" data-aos-delay="300" style="--obg:var(--tint-c-bg);--oc:var(--tint-c-fg)"><span class="chan__ic" data-ic="workflow"></span><b>Automation</b><small>Triggered workflows</small></div>
+      <div class="chan glass" data-aos="zoom-in" data-aos-delay="350" style="--obg:var(--tint-a-bg);--oc:var(--tint-a-fg)"><span class="chan__ic" data-ic="database"></span><b>Database</b><small>Clean, segmented lists</small></div>
     </div>
   </div>
 </section>
 
-<!-- ====== ADVERTISING ====== -->
-<section class="section advert" id="advertising">
-  <div class="container">
-    <div class="section-head" data-aos="fade-up">
-      <span class="kicker">Advertising, Promotions &amp; Print Media</span>
-      <h2 class="section-title">On every screen — and every street.</h2>
-      <p class="section-lead">
-        Digital reach is only half the story. Our print &amp; on-ground media puts your brand
-        where crowds actually gather — from highway hoardings to sky balloons and mascots.
-      </p>
-    </div>
+<!-- ====== STORY — SCROLL-DRIVEN TRANSFORMATION NARRATIVE ====== -->
+<section class="pillars-pin story-pin" id="story">
+  <div class="pillars-pin__intro container" data-aos="fade-up">
+    <span class="kicker">A transformation, step by step</span>
+    <h2 class="section-title">From invisible to unstoppable.</h2>
+    <p class="section-lead">Scroll to see what "going digital" actually looks like, chapter by chapter.</p>
+    <span class="pillars-pin__hint" aria-hidden="true"><i></i> Scroll to explore</span>
+  </div>
 
-    <div class="advert__grid">
-      <div class="ad-tile glass ad-tile--wide" data-aos="fade-up">
-        <span class="ad-ic" data-ic="billboard"></span>
-        <h3>Hoardings &amp; Flex Printing</h3>
-        <p>Large-format outdoor dominance at premium high-footfall locations.</p>
-      </div>
-      <div class="ad-tile glass" data-aos="fade-up" data-aos-delay="60">
-        <span class="ad-ic" data-ic="balloon"></span>
-        <h3>Sky Balloon</h3>
-        <p>15-day airborne campaigns.</p>
-      </div>
-      <div class="ad-tile glass" data-aos="fade-up" data-aos-delay="120">
-        <span class="ad-ic" data-ic="truck"></span>
-        <h3>Auto &amp; Vehicle</h3>
-        <p>Moving billboards across the city.</p>
-      </div>
-      <div class="ad-tile glass" data-aos="fade-up">
-        <span class="ad-ic" data-ic="kiosk"></span>
-        <h3>Cubical / Booth</h3>
-        <p>Branded activation booths.</p>
-      </div>
-      <div class="ad-tile glass" data-aos="fade-up" data-aos-delay="60">
-        <span class="ad-ic" data-ic="smile"></span>
-        <h3>Mascots &amp; Costumes</h3>
-        <p>Memorable, photo-worthy ground promotions.</p>
-      </div>
-      <div class="ad-tile glass ad-tile--wide" data-aos="fade-up" data-aos-delay="120">
-        <span class="ad-ic" data-ic="newspaper"></span>
-        <h3>Pamphlets, Posters &amp; Brochures</h3>
-        <p>Door-to-door distribution and high-quality print collateral, produced in-house.</p>
+  <div class="pillars-pin__scroll" id="storyScroll" style="--pcount:5">
+    <div class="pillars-pin__sticky">
+      <div class="container pillars-pin__inner">
+
+        <aside class="pillars-rail">
+          <span class="pillars-rail__count"><b id="storyNum">01</b><span>/ 05</span></span>
+          <ul class="pillars-rail__list">
+            <li class="is-active">No Digital Presence</li>
+            <li>Brand &amp; Website Go Live</li>
+            <li>Outreach &amp; Ads Launch</li>
+            <li>The Market Responds</li>
+            <li>Growth Compounds</li>
+          </ul>
+          <div class="pillars-rail__bar"><i id="storyBar"></i></div>
+        </aside>
+
+        <div class="pillars-stage" id="storyStage">
+          <article class="ppin is-active" style="--acc:#9aa0ad" data-chapter="flat">
+            <span class="ppin__ghost">01</span>
+            <div class="ppin__head">
+              <span class="ppin__ic" data-ic="zap-off"></span>
+              <div class="ppin__heading">
+                <span class="ppin__no">Chapter 01</span>
+                <h3 class="ppin__title">No Digital Presence</h3>
+              </div>
+            </div>
+            <div class="ppin__body ppin__body--story">
+              <p class="ppin__desc">A great business, invisible online. Flat growth, word-of-mouth only.</p>
+              <div class="ppin__panel story-viz story-viz--flat">
+                <svg viewBox="0 0 300 80" preserveAspectRatio="none"><polyline points="0,55 60,58 120,54 180,57 240,55 300,56"/></svg>
+                <small>~4 leads / month — unchanged for years</small>
+              </div>
+            </div>
+          </article>
+
+          <article class="ppin" style="--acc:#7c5cff" data-chapter="launch">
+            <span class="ppin__ghost">02</span>
+            <div class="ppin__head">
+              <span class="ppin__ic" data-ic="monitor"></span>
+              <div class="ppin__heading">
+                <span class="ppin__no">Chapter 02</span>
+                <h3 class="ppin__title">Brand &amp; Website Go Live</h3>
+              </div>
+            </div>
+            <div class="ppin__body ppin__body--story">
+              <p class="ppin__desc">A sharp identity and a fast site — the business becomes findable.</p>
+              <div class="ppin__panel story-viz story-viz--bars">
+                <div class="viz-bars story-bars">
+                  <span style="--h:14%"></span><span style="--h:22%"></span><span style="--h:19%"></span>
+                  <span style="--h:38%"></span><span style="--h:55%"></span><span style="--h:82%"></span>
+                </div>
+                <small>Profile &amp; site visits climbing</small>
+              </div>
+            </div>
+          </article>
+
+          <article class="ppin" style="--acc:#0d9488" data-chapter="reach">
+            <span class="ppin__ghost">03</span>
+            <div class="ppin__head">
+              <span class="ppin__ic" data-ic="broadcast"></span>
+              <div class="ppin__heading">
+                <span class="ppin__no">Chapter 03</span>
+                <h3 class="ppin__title">Outreach &amp; Ads Launch</h3>
+              </div>
+            </div>
+            <div class="ppin__body ppin__body--story">
+              <p class="ppin__desc">Bulk messaging and targeted ads fire together — reach multiplies overnight.</p>
+              <div class="ppin__panel ppin__panel--center story-viz story-viz--reach">
+                <b><span class="js-manual-count" data-count="250000" data-suffix="+">0</span></b>
+                <small>People reached, this campaign</small>
+              </div>
+            </div>
+          </article>
+
+          <article class="ppin" style="--acc:#d97706" data-chapter="respond">
+            <span class="ppin__ghost">04</span>
+            <div class="ppin__head">
+              <span class="ppin__ic" data-ic="chart"></span>
+              <div class="ppin__heading">
+                <span class="ppin__no">Chapter 04</span>
+                <h3 class="ppin__title">The Market Responds</h3>
+              </div>
+            </div>
+            <div class="ppin__body ppin__body--story">
+              <p class="ppin__desc">Leads, reviews and sentiment climb together — all on one dashboard.</p>
+              <div class="ppin__panel ppin__panel--center story-viz story-viz--donut">
+                <div class="donut story-donut" id="storyDonut" style="--pos:0;--neu:12">
+                  <div class="donut__hole"><b><span class="story-donut-num">0</span>%</b><small>Positive sentiment</small></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="ppin" style="--acc:#7c3aed" data-chapter="compound">
+            <span class="ppin__ghost">05</span>
+            <div class="ppin__head">
+              <span class="ppin__ic" data-ic="repeat"></span>
+              <div class="ppin__heading">
+                <span class="ppin__no">Chapter 05</span>
+                <h3 class="ppin__title">Growth Compounds</h3>
+              </div>
+            </div>
+            <div class="ppin__body ppin__body--story">
+              <p class="ppin__desc">Repeat customers and referrals — momentum that keeps paying back.</p>
+              <div class="ppin__panel ppin__panel--center story-viz story-viz--stats">
+                <div><b><span class="js-manual-count" data-count="61" data-suffix="%">0</span></b><small>Repeat customers</small></div>
+                <div><b><span class="js-manual-count" data-count="5" data-suffix="x">0</span></b><small>Return on ad spend</small></div>
+              </div>
+            </div>
+          </article>
+        </div>
       </div>
     </div>
   </div>
+  <p class="story-pin__note container">Illustrative example — a composite of typical outcomes, not a specific client.</p>
 </section>
 
 <!-- ====== HOW WE WIN CLIENTS / GROWTH FUNNEL ====== -->
@@ -504,30 +911,30 @@
     </div>
 
     <div class="steps">
-      <div class="step glass" data-aos="fade-up">
-        <span class="step__no">1</span>
+      <div class="step glass" data-aos="fade-up" style="--obg:var(--tint-a-bg);--oc:var(--tint-a-fg)">
+        <div class="step__top"><span class="step__no">1</span><span class="step__ic" data-ic="search"></span></div>
         <h3>Research &amp; Intelligence</h3>
-        <p>We study your market, audience sentiment and competitors to find the exact angle that converts.</p>
+        <p>We find the exact angle that converts — from market, sentiment &amp; competitor data.</p>
       </div>
-      <div class="step glass" data-aos="fade-up" data-aos-delay="80">
-        <span class="step__no">2</span>
+      <div class="step glass" data-aos="fade-up" data-aos-delay="80" style="--obg:var(--tint-b-bg);--oc:var(--tint-b-fg)">
+        <div class="step__top"><span class="step__no">2</span><span class="step__ic" data-ic="palette"></span></div>
         <h3>Brand &amp; Message</h3>
-        <p>Sharp identity, creatives and content that make your offer impossible to ignore.</p>
+        <p>Sharp identity and content that make your offer impossible to ignore.</p>
       </div>
-      <div class="step glass" data-aos="fade-up" data-aos-delay="160">
-        <span class="step__no">3</span>
+      <div class="step glass" data-aos="fade-up" data-aos-delay="160" style="--obg:var(--tint-c-bg);--oc:var(--tint-c-fg)">
+        <div class="step__top"><span class="step__no">3</span><span class="step__ic" data-ic="rocket"></span></div>
         <h3>Omnichannel Launch</h3>
-        <p>Digital ads, bulk outreach and on-ground media fire together for maximum recall.</p>
+        <p>Ads, bulk outreach and on-ground media fire together for maximum recall.</p>
       </div>
-      <div class="step glass" data-aos="fade-up" data-aos-delay="240">
-        <span class="step__no">4</span>
+      <div class="step glass" data-aos="fade-up" data-aos-delay="240" style="--obg:var(--tint-d-bg);--oc:var(--tint-d-fg)">
+        <div class="step__top"><span class="step__no">4</span><span class="step__ic" data-ic="workflow"></span></div>
         <h3>Capture &amp; Nurture</h3>
-        <p>Automated workflows follow up on every lead by SMS, WhatsApp, IVR and email.</p>
+        <p>Automated follow-up on every lead — SMS, WhatsApp, IVR and email.</p>
       </div>
-      <div class="step glass" data-aos="fade-up" data-aos-delay="320">
-        <span class="step__no">5</span>
+      <div class="step glass" data-aos="fade-up" data-aos-delay="320" style="--obg:var(--tint-e-bg);--oc:var(--tint-e-fg)">
+        <div class="step__top"><span class="step__no">5</span><span class="step__ic" data-ic="chart"></span></div>
         <h3>Measure &amp; Scale</h3>
-        <p>ROI dashboards show what works — we double down and cut the rest, every week.</p>
+        <p>Live ROI dashboards — we double down and cut the rest, every week.</p>
       </div>
     </div>
 
@@ -591,52 +998,85 @@
           <h2 class="section-title">Tell us your goal. We'll build the campaign.</h2>
           <p class="section-lead">Share a few details and our team will get back within 24 hours with ideas and a tailored proposal.</p>
 
-          <ul class="contact__points">
-            <li><span data-ic="clock"></span> 24-hour response, no pushy sales</li>
-            <li><span data-ic="layout"></span> Custom blueprint for your brand</li>
-            <li><span data-ic="tag"></span> Transparent, package-based pricing</li>
-          </ul>
+          <!-- reference-style widget: a live "proposal preview" glass card with
+               an SVG growth chart + itemised deliverables (echoes Images 6 & 9) -->
+          <div class="proposal-card">
+            <div class="proposal-card__head">
+              <span class="proposal-card__ic" data-ic="sparkle"></span>
+              <div class="proposal-card__title"><b>Your Custom Proposal</b><small>Tailored to your brand &amp; budget</small></div>
+              <span class="proposal-card__badge"><i data-ic="clock"></i> 24h</span>
+            </div>
 
-          <div class="contact__tag">
-            <strong>OMNIS DIGITAL</strong>
-            <em>Connect • Communicate • Create Impact</em>
+            <div class="proposal-card__chart">
+              <svg viewBox="0 0 280 96" preserveAspectRatio="none" aria-hidden="true">
+                <defs>
+                  <linearGradient id="propArea" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#7c5cff" stop-opacity=".5"/>
+                    <stop offset="100%" stop-color="#7c5cff" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <polygon class="proposal-card__area" points="0,86 40,78 80,80 120,60 160,50 200,30 240,20 280,6 280,96 0,96"/>
+                <polyline class="proposal-card__line" points="0,86 40,78 80,80 120,60 160,50 200,30 240,20 280,6"/>
+                <circle class="proposal-card__dot" cx="280" cy="6" r="4.5"/>
+              </svg>
+              <span class="proposal-card__cap"><i></i> Projected reach &amp; lead growth</span>
+            </div>
+
+            <ul class="proposal-card__list">
+              <li><span data-ic="search"></span> Market &amp; competitor research</li>
+              <li><span data-ic="layout"></span> Channel + creative blueprint</li>
+              <li><span data-ic="chart"></span> Budget &amp; ROI forecast</li>
+            </ul>
           </div>
         </div>
 
         <form class="contact__form contact__form--apple" id="leadForm" novalidate data-aos="fade-left">
           <span class="contact__grip" aria-hidden="true"></span>
+          <div class="field field--icon">
+            <label for="name">Full name</label>
+            <div class="field__wrap">
+              <span class="field__ic" data-ic="users"></span>
+              <input id="name" name="name" type="text" placeholder="Your name" required />
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field field--icon">
+              <label for="phone">Phone</label>
+              <div class="field__wrap">
+                <span class="field__ic" data-ic="phone"></span>
+                <input id="phone" name="phone" type="tel" placeholder="+91 ..." required />
+              </div>
+            </div>
+            <div class="field field--icon">
+              <label for="email">Email</label>
+              <div class="field__wrap">
+                <span class="field__ic" data-ic="mail"></span>
+                <input id="email" name="email" type="email" placeholder="you@brand.com" />
+              </div>
+            </div>
+          </div>
+          <div class="field field--icon">
+            <label for="service">Primary interest</label>
+            <div class="field__wrap">
+              <span class="field__ic" data-ic="target"></span>
+              <select id="service" name="service">
+                <option>Digital Presence &amp; Strategy</option>
+                <option>Data, Analytics &amp; Intelligence</option>
+                <option>Communication &amp; Outreach (Bulk SMS/WhatsApp/IVR)</option>
+                <option>Media Production &amp; Ad Films</option>
+                <option>Advertising &amp; Print Promotions</option>
+                <option>Political / Social Campaign Management</option>
+                <option>Full 360&deg; Campaign</option>
+              </select>
+            </div>
+          </div>
           <div class="field">
-        <label for="name">Full name</label>
-        <input id="name" name="name" type="text" placeholder="Your name" required />
-      </div>
-      <div class="field-row">
-        <div class="field">
-          <label for="phone">Phone</label>
-          <input id="phone" name="phone" type="tel" placeholder="+91 ..." required />
-        </div>
-        <div class="field">
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" placeholder="you@brand.com" />
-        </div>
-      </div>
-      <div class="field">
-        <label for="service">Primary interest</label>
-        <select id="service" name="service">
-          <option>Digital Presence &amp; Strategy</option>
-          <option>Data, Analytics &amp; Intelligence</option>
-          <option>Communication &amp; Outreach (Bulk SMS/WhatsApp/IVR)</option>
-          <option>Media Production &amp; Ad Films</option>
-          <option>Advertising &amp; Print Promotions</option>
-          <option>Political / Social Campaign Management</option>
-          <option>Full 360&deg; Campaign</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="message">Tell us about your goal</label>
-        <textarea id="message" name="message" rows="3" placeholder="e.g. Launch a 3-month awareness campaign across 5 districts..."></textarea>
-      </div>
-      <button type="submit" class="btn btn--gold btn--block btn--lg">Send &amp; Get a Proposal</button>
-      <p class="form-note" id="formNote" hidden>Thanks — your request has been captured. We'll be in touch within 24 hours.</p>
+            <label for="message">Tell us about your goal</label>
+            <textarea id="message" name="message" rows="3" placeholder="e.g. Launch a 3-month awareness campaign across 5 districts..."></textarea>
+          </div>
+          <button type="submit" class="btn btn--gold btn--block btn--lg">Send &amp; Get a Proposal <span aria-hidden="true">→</span></button>
+          <p class="contact__secure"><span data-ic="shield"></span> Your details are private — no spam, ever.</p>
+          <p class="form-note" id="formNote" hidden>Thanks — your request has been captured. We'll be in touch within 24 hours.</p>
         </form>
       </div>
     </div>
@@ -649,6 +1089,7 @@
 <footer class="footer">
   <div class="container footer__inner">
     <div class="footer__brand">
+      <img class="brand__mark" src="logo-mark.png" alt="" width="334" height="334" aria-hidden="true" />
       <div>
         <span class="brand__word brand__word--light">OMN<span class="brand__i">I</span>S</span>
         <span class="brand__sub brand__sub--light">Digital</span>
@@ -658,9 +1099,7 @@
     <nav class="footer__links">
       <a href="#services">Services</a>
       <a href="#intelligence">Intelligence</a>
-      <a href="#advertising">Advertising</a>
       <a href="#compare">Compare</a>
-      <a href="#packages">Packages</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -669,6 +1108,11 @@
     <span>Connect • Communicate • Create Impact</span>
   </div>
 </footer>
+
+<!-- ====== FLOATING WHATSAPP CONTACT ====== -->
+<a class="wa-fab" href="https://wa.me/918520064109" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.008a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.981.998-3.648-.235-.374A9.86 9.86 0 0 1 2.17 12.01c.002-5.45 4.437-9.884 9.889-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm0-21.785C5.495 0 .003 5.493 0 12.05a12.013 12.013 0 0 0 1.61 6.002L0 24l6.107-1.602A12.018 12.018 0 0 0 12.05 24C18.607 24 24.1 18.507 24.103 11.95 24.106 5.393 18.613-.003 12.05 0z"/></svg>
+</a>
 
 <!-- ====== SUCCESS MODAL ====== -->
 <div class="modal-overlay" id="successModal">
@@ -679,14 +1123,10 @@
         <path class="modal-check__tick" d="M14 27l8 8 16-16"/>
       </svg>
     </div>
-    <h3 class="modal-title">Request Captured!</h3>
-    <p class="modal-text">Your enquiry details are ready. Tap the button below to send them directly to our team on WhatsApp — we'll reply within <strong>24 hours</strong>.</p>
+    <h3 class="modal-title" id="modalTitle">Thank you!</h3>
+    <p class="modal-text" id="modalText">Your enquiry is on its way to our team — we've got your details and we'll get back to you within <strong>24 hours</strong>.</p>
     <div class="modal-details" id="modalDetails"></div>
     <div class="modal-actions">
-      <a class="btn modal-wa-btn" id="modalWaBtn" href="#" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.008a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.981.998-3.648-.235-.374A9.86 9.86 0 0 1 2.17 12.01c.002-5.45 4.437-9.884 9.889-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm0-21.785C5.495 0 .003 5.493 0 12.05a12.013 12.013 0 0 0 1.61 6.002L0 24l6.107-1.602A12.018 12.018 0 0 0 12.05 24C18.607 24 24.1 18.507 24.103 11.95 24.106 5.393 18.613-.003 12.05 0z"/></svg>
-        Send via WhatsApp
-      </a>
       <button class="btn btn--ghost modal-close-btn" id="modalCloseBtn">Close</button>
     </div>
   </div>
