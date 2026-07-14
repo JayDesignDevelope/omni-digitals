@@ -431,7 +431,7 @@
       // inbox via SMTP. CONTACT_API defaults to a same-origin path (works when
       // the site is served by that Node server); override it with an absolute
       // URL if the API runs on a different host/port.
-      var CONTACT_API = window.CONTACT_API || 'https://omni-digitals-fdlb.onrender.com/api/contact';
+      var CONTACT_API = window.CONTACT_API || '/api/contact';
       var submitBtn = form.querySelector('button[type="submit"]');
       var btnLabel = submitBtn ? submitBtn.innerHTML : '';
       if (submitBtn) { submitBtn.disabled = true; submitBtn.innerHTML = 'Sending…'; }
